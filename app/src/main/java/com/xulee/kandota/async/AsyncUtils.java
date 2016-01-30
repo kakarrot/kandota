@@ -31,12 +31,29 @@ public class AsyncUtils {
         JHttpClient.get(context, url, params, handler);
     }
 
+    /**
+     * 获取作者
+     * @param context
+     * @param url
+     * @param params
+     * @param handler
+     */
     public static void getAuthors(Context context, String url, RequestParams params,
                                   JsonResponseHandler<AuthorList> handler) {
         if (params != null) {
             params.put("limit", "" + Constants.DEFAULT_PAGE_SIZE);
         }
         JHttpClient.get(context, url, params, handler);
+    }
+
+    /**
+     * 获取开机图片/广告
+     * @param context
+     * @param handler
+     */
+    public static void getAds(Context context, JsonResponseHandler<AuthorList> handler) {
+        String url = "";
+        JHttpClient.get(context, url, null, handler);
     }
 
     /**
