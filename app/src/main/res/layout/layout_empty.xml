@@ -1,0 +1,40 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout_empty"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:visibility="gone">
+
+    <ImageView
+        android:id="@+id/iv_empty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ic_empty_default" />
+
+    <TextView
+        android:id="@+id/tv_empty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:text="@string/empty_bookshelf"
+        android:textColor="@color/tv_desc_color"
+        android:textSize="@dimen/font_size_small" />
+
+    <Button
+        android:id="@+id/btn_empty"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/btn_hollow_yellow"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp"
+        android:text="@string/app_name"
+        android:textColor="@color/btn_yellow_text_color"
+        android:textSize="@dimen/font_size_middle"
+        android:visibility="gone" />
+
+</LinearLayout>

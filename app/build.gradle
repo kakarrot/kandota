@@ -1,0 +1,55 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion '23.0.2'
+
+    defaultConfig {
+        applicationId "com.xulee.kandota"
+        minSdkVersion 14
+        targetSdkVersion 22
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES.txt'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/notice.txt'
+        exclude 'META-INF/license.txt'
+        exclude 'META-INF/dependencies.txt'
+        exclude 'META-INF/LGPL2.1'
+        exclude 'META-INF/services/javax.annotation.processing.Processor'
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    testCompile 'junit:junit:4.12'
+    compile 'com.android.support:appcompat-v7:23.1.1'
+    //    compile 'com.android.support:design:23.0.1'
+    compile 'com.mcxiaoke.viewpagerindicator:library:+'
+    compile 'com.nineoldandroids:library:2.4.+'
+    compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
+    compile 'com.loopj.android:android-async-http:1.4.9'
+    compile 'com.google.code.gson:gson:+'
+    compile 'com.jakewharton:butterknife:7.0.1'
+    compile 'com.facebook.rebound:rebound:0.3.7'
+    //    compile 'com.github.liuguangqiang.mvp:library:1.0.4'
+    //        compile 'com.github.liuguangqiang.aframework:library:1.0.2'
+    compile 'com.squareup.dagger:dagger:1.2.+'
+    compile 'com.squareup.dagger:dagger-compiler:1.2.+'
+    //    compile 'org.apache.httpcomponents:httpcore:4.3.2'
+    //    compile 'org.apache.httpcomponents:httpmime:4.3.5'
+    compile project(':library_aframework')
+}

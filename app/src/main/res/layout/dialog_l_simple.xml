@@ -1,0 +1,33 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:gravity="right"
+    android:orientation="horizontal"
+    android:paddingRight="20dp">
+
+    <TextView
+        android:id="@+id/tv_btn_cancel"
+        style="@style/ItemBackaground"
+        android:layout_width="wrap_content"
+        android:layout_height="38dp"
+        android:layout_marginRight="10dp"
+        android:gravity="center"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:text="@string/str_cancel"
+        android:textColor="@color/tv_desc_color"
+        android:textSize="@dimen/font_size_small" />
+
+    <TextView
+        android:id="@+id/tv_btn_sure"
+        style="@style/ItemBackaground"
+        android:layout_width="wrap_content"
+        android:layout_height="38dp"
+        android:gravity="center"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:text="@string/str_sure"
+        android:textColor="@color/main_dress_color"
+        android:textSize="@dimen/font_size_small" />
+
+</LinearLayout>

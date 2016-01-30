@@ -1,0 +1,57 @@
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <style name="AppBaseTheme" parent="@android:style/Theme.Material.Light"></style>
+
+    <style name="AppTheme" parent="AppBaseTheme">
+
+        <item name="android:statusBarColor">@color/status_bar_bg_color</item>
+
+        <item name="android:windowBackground">@color/main_bg_color</item>
+        <item name="android:homeAsUpIndicator">@drawable/ic_action_home</item>
+        <item name="android:logo">@drawable/transparent_bg</item>
+        <item name="android:windowContentOverlay">@drawable/action_bar_overlay</item>
+        <item name="android:actionBarStyle">@style/MyActionBar</item>
+        <item name="android:actionModeBackground">@color/action_bar_bg_color</item>
+        <item name="android:actionModeStyle">@style/MyActionModeStyle</item>
+        <item name="android:actionModeCloseDrawable">@drawable/ic_action_mode_cancel</item>
+        <item name="android:actionMenuTextColor">@color/action_bar_text_color</item>
+        <item name="android:actionMenuTextAppearance">@style/MyActionBar.MenuItem</item>
+        <item name="android:actionModeCloseButtonStyle">@style/MyActionModeCloseButton</item>
+
+        <!-- 允许使用transitions -->
+        <!--<item name="android:windowContentTransitions">true</item>-->
+        <!--<item name="android:windowAllowEnterTransitionOverlap">true</item>-->
+        <!--<item name="android:windowAllowReturnTransitionOverlap">true</item>-->
+        <!--&lt;!&ndash; 进入、退出的转换(效果) &ndash;&gt;-->
+        <!--<item name="android:windowEnterTransition">@android:transition/explode</item>-->
+        <!--<item name="android:windowExitTransition">@android:transition/explode</item>-->
+
+    </style>
+
+    <!--<style name="Pull_To_Refresh">-->
+    <!--<item name="ptrAnimationStyle">flip</item>-->
+    <!--<item name="ptrDrawable">@drawable/icon_pull_to_refresh</item>-->
+    <!--<item name="ptrHeaderTextColor">@color/tv_desc_color</item>-->
+    <!--<item name="ptrShowIndicator">false</item>-->
+    <!--<item name="ptrListViewExtrasEnabled">true</item>-->
+    <!--<item name="ptrHeaderTextAppearance">@style/ptrHeaderTextStyle</item>-->
+    <!--<item name="android:listSelector">?android:attr/selectableItemBackground</item>-->
+    <!--</style>-->
+
+    <style name="ListSelector">
+        <item name="android:listSelector">?android:attr/selectableItemBackground</item>
+    </style>
+
+    <style name="ListSelectorBorderless">
+        <item name="android:listSelector">?android:attr/selectableItemBackgroundBorderless</item>
+    </style>
+
+    <style name="ItemBackaground">
+        <item name="android:background">?android:attr/selectableItemBackground</item>
+    </style>
+
+    <style name="ItemBackagroundBorderless">
+        <item name="android:background">?android:attr/selectableItemBackgroundBorderless</item>
+    </style>
+
+</resources>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="book_detail_action_titles">
+        <item>查看详情</item>
+        <item>删除</item>
+    </string-array>
+
+    <string-array name="main_menu_titles">
+        <item>视频</item>
+        <item>主播</item>
+        <item>我</item>
+    </string-array>
+
+    <string-array name="main_menu_icon_n">
+        <item>@drawable/ic_main_menu_bookshelf_n</item>
+        <item>@drawable/ic_main_menu_bookcity_n</item>
+        <item>@drawable/ic_main_menu_me_n</item>
+    </string-array>
+
+    <string-array name="main_menu_icon_s">
+        <item>@drawable/ic_main_menu_bookshelf_s</item>
+        <item>@drawable/ic_main_menu_bookcity_s</item>
+        <item>@drawable/ic_main_menu_me_s</item>
+    </string-array>
+
+    <!-- ReadMenu -->
+    <string-array name="read_menu_titles">
+        <item>夜间</item>
+        <item>设置</item>
+        <item>目录</item>
+        <!--<item>缓存</item>-->
+    </string-array>
+    <!--  -->
+    <string-array name="book_city_tabs">
+        <item>排行</item>
+        <item>推荐</item>
+        <item>分类</item>
+    </string-array>
+
+    <!-- Category -->
+    <string-array name="left_category_titles">
+        <item>奇幻</item>
+        <item>玄幻</item>
+        <item>仙侠</item>
+        <item>武侠</item>
+        <item>都市</item>
+        <item>网游</item>
+        <item>军事</item>
+        <item>历史</item>
+        <item>科幻</item>
+        <item>灵异</item>
+    </string-array>
+
+    <!-- Source -->
+    <string-array name="source_items">
+        <item>智能搜索</item>
+        <item>百度贴吧</item>
+        <item>百度搜索</item>
+        <item>宜搜</item>
+    </string-array>
+
+    <integer-array name="source_value">
+        <item>0</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+    </integer-array>
+
+    <string-array name="login_types">
+        <item>新浪微博登陆</item>
+        <item>QQ登陆</item>
+    </string-array>
+
+    <string-array name="offline_items">
+        <item>10章</item>
+        <item>50章</item>
+        <item>100章</item>
+        <item>全部</item>
+    </string-array>
+
+</resources>

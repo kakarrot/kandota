@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:padding="@dimen/default_item_padding"
+    android:transitionName="author_detail">
+
+    <com.xulee.kandota.view.CircleImageView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/item_iv_cover"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:src="@drawable/ic_default_avatar"
+        app:border_width="1dp"
+        app:border_color="#fafafa"/>
+
+    <TextView
+        android:id="@+id/item_tv_title"
+        style="@style/ItemTitle2"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/default_padding"
+        android:paddingRight="@dimen/default_padding"
+        android:text="@string/app_name"
+        android:textColor="@color/tv_title_color"
+        android:textSize="@dimen/font_size_middle"
+        android:transitionName="author_title" />
+
+</LinearLayout>

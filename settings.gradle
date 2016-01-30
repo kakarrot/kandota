@@ -1,0 +1,1 @@
+include ':app', ':library_aframework', ':library_mvp'
