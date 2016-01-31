@@ -6,6 +6,7 @@ import android.widget.AdapterView;
 
 import com.liuguangqiang.framework.utils.PreferencesUtils;
 import com.xulee.kandota.act.BrowserActivity;
+import com.xulee.kandota.act.youku.PlayerActivity;
 import com.xulee.kandota.adapter.MoviesAdapter;
 import com.xulee.kandota.async.AsyncGetCacheMovies;
 import com.xulee.kandota.async.AsyncUtils;
@@ -72,8 +73,8 @@ public class MovieListFragment extends BaseListFragment<Movie> {
                 if (position < data.size()) {
                     Bundle extra = new Bundle();
                     String url = getPlayUrl(data.get(position).getHref());
-                    extra.putString(BrowserActivity.EXTRA_TITLE, url);
-                    startActivity(BrowserActivity.class, extra);
+                    extra.putString(PlayerActivity.EXTRA_VID, url);
+                    startActivity(PlayerActivity.class, extra);
                 }
             }
         });
@@ -89,7 +90,7 @@ public class MovieListFragment extends BaseListFragment<Movie> {
     public String getPlayUrl(String url){
         int str_start = url.indexOf("id_") + 3;
         int str_end = url.indexOf(".html?");
-        return "http://player.youku.com/embed/" + url.substring(str_start, str_end);
+        return url.substring(str_start, str_end); //"http://player.youku.com/embed/"
     }
     /**
      * 获取最新Dota视频。

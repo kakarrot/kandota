@@ -52,4 +52,5 @@ dependencies {
     //    compile 'org.apache.httpcomponents:httpcore:4.3.2'
     //    compile 'org.apache.httpcomponents:httpmime:4.3.5'
     compile project(':library_aframework')
+    compile project(':library_youku')
 }

@@ -26,6 +26,7 @@ import com.xulee.kandota.mvp.ui.MainUiCallback;
 import com.xulee.kandota.ui.SlowViewPager;
 import com.xulee.kandota.utils.ImageLoaderUtils;
 import com.xulee.kandota.utils.level.LevelUtils;
+import com.youku.player.YoukuPlayerBaseConfiguration;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -92,6 +93,7 @@ public class MainActivity extends BaseActivity implements MainUi {
     public void onBackPressed() {
         if (doubleBackToExitPressedOnce) {
             exitApp();
+            YoukuPlayerBaseConfiguration.exit();
             return;
         }
         this.doubleBackToExitPressedOnce = true;
