@@ -103,7 +103,7 @@ public class LoginDialog implements AuthListener {
             @Override
             public void onSuccess(Auth result) {
                 if (result != null) {
-                    getUser(result.userId);
+//                    getUser(result.userId);
                     LoginManager.saveAuth(act, result);
                 }
             }
@@ -120,6 +120,7 @@ public class LoginDialog implements AuthListener {
             @Override
             public void onFinish() {
                 System.out.println("login-onFinish");
+                dialog.dismiss(); // 新添加
             }
         });
     }

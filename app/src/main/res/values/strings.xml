@@ -30,7 +30,7 @@
     <string name="remove_from_bookshelf">取消收藏</string>
     <string name="str_search_hint">请输入书名或者作者</string>
     <string name="choose_login_type">请选择登录方式</string>
-    <string name="login_desc">登录后同步书架和阅读进度</string>
+    <string name="login_desc">登录后同步数据</string>
     <string name="updated">已更新</string>
 
     <!-- BookIntro -->
@@ -55,9 +55,11 @@
     <string name="set_night_model">夜间模式</string>
     <string name="set_save_model">流量控制</string>
     <string name="set_push_message">推送消息</string>
-    <string name="set_save_model_summary">仅在WI-FI下加载小说封面</string>
+    <string name="set_save_model_summary">仅在WI-FI下加载视频封面</string>
     <string name="set_legal">免责声明</string>
-    <string name="set_rating">给书吧好评</string>
+    <string name="set_rating">给看Dota好评</string>
+    <string name="set_download">已下载</string>
+    <string name="set_caching">正在下载</string>
     <string name="set_update">检查版本更新</string>
     <string name="set_version">版本</string>
     <string name="set_logout">退出登陆</string>

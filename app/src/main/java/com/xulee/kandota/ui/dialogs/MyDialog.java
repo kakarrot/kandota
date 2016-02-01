@@ -200,7 +200,10 @@ public class MyDialog {
     }
 
     public void dismiss() {
-        if (mDialog != null) mDialog.dismiss();
+        if (mDialog != null) {
+            pbLoading.setVisibility(View.GONE);
+            mDialog.dismiss();
+        }
     }
 
     private boolean cancelable = true;

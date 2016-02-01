@@ -1,0 +1,125 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scrollView_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:scrollbars="none">
+
+    <LinearLayout
+        android:id="@+id/layout_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            style="@style/SetItemHeader"
+            android:text="@string/set_title" />
+
+        <RelativeLayout
+            android:id="@+id/layout_night_model"
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/set_item_height"
+            android:visibility="gone">
+
+            <ImageView
+                android:id="@+id/iv_push_message"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/icon_switch_off" />
+
+            <TextView
+                style="@style/SetItemTextView"
+                android:text="@string/set_push_message" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/layout_save_model"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/iv_save_model"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/icon_switch_off" />
+
+            <LinearLayout
+                style="@style/SetItemTextView"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingBottom="16dp"
+                android:paddingTop="16dp">
+
+                <TextView
+                    style="@style/SetItem_Title"
+                    android:text="@string/set_save_model" />
+
+                <TextView
+                    style="@style/SetItem_Summary"
+                    android:layout_marginTop="6dp"
+                    android:text="@string/set_save_model_summary" />
+            </LinearLayout>
+        </RelativeLayout>
+
+        <!--  -->
+
+        <TextView
+            style="@style/SetItemHeader"
+            android:text="@string/set_more" />
+
+        <TextView
+            android:id="@+id/set_tv_legal"
+            style="@style/SetItemTextView"
+            android:text="@string/set_legal" />
+
+        <TextView
+            android:id="@+id/set_tv_rating"
+            style="@style/SetItemTextView"
+            android:text="@string/set_rating" />
+
+        <TextView
+            android:id="@+id/set_tv_update"
+            style="@style/SetItemTextView"
+            android:text="@string/set_update" />
+
+
+        <RelativeLayout
+            style="@style/SetItemTextView"
+            android:orientation="vertical"
+            android:paddingRight="16dp">
+
+            <TextView
+                style="@style/SetItem_Title"
+                android:text="@string/set_version" />
+
+            <TextView
+                android:id="@+id/tv_version_name"
+                style="@style/SetItem_Summary"
+                android:layout_alignParentRight="true"
+                android:text="@string/set_version" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_set_user"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/SetItemHeader"
+                android:text="@string/set_account" />
+
+            <TextView
+                android:id="@+id/set_tv_logout"
+                style="@style/SetItemTextView"
+                android:text="@string/set_logout" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>

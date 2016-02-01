@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 23
-    buildToolsVersion '23.0.2'
+    buildToolsVersion '23.0.1'
 
     defaultConfig {
         applicationId "com.xulee.kandota"
@@ -31,12 +31,16 @@ android {
         exclude 'META-INF/LGPL2.1'
         exclude 'META-INF/services/javax.annotation.processing.Processor'
     }
+    repositories {
+        flatDir {
+            dirs 'libs'
+        }
+    }
 }
-
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:23.1.1'
+    compile 'com.android.support:appcompat-v7:23.0.1'
     //    compile 'com.android.support:design:23.0.1'
     compile 'com.mcxiaoke.viewpagerindicator:library:+'
     compile 'com.nineoldandroids:library:2.4.+'
@@ -51,6 +55,9 @@ dependencies {
     compile 'com.squareup.dagger:dagger-compiler:1.2.+'
     //    compile 'org.apache.httpcomponents:httpcore:4.3.2'
     //    compile 'org.apache.httpcomponents:httpmime:4.3.5'
-    compile project(':library_aframework')
-    compile project(':library_youku')
+    compile (name:'library_youku-release', ext:'aar')
+    compile (name:'library_mvp-release', ext:'aar')
+    compile (name:'library_aframework-release', ext:'aar')
+//    compile project(':library_aframework')
+//    compile project(':library_youku')
 }

@@ -2,7 +2,7 @@ package com.xulee.kandota.constant;
 
 public class Constants_Tencent {
 
-	public static String APP_ID = "1103266474";
+	public static String APP_ID = "1105157968";
 	
 	public static final String WX_APP_ID = "l7XNxDZjdfIQzRBw";
 
