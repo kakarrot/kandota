@@ -28,6 +28,7 @@ import com.youku.service.download.OnCreateDownloadListener;
 public class PlayerActivity extends FragmentActivity {
 
 	public static String EXTRA_VID = "vid";
+	public static String EXTRA_NAME = "name";
 	private YoukuBasePlayerManager basePlayerManager;
 	// 播放器控件
 	private YoukuPlayerView mYoukuPlayerView;
@@ -48,6 +49,8 @@ public class PlayerActivity extends FragmentActivity {
 	private boolean isFromLocal = false;
 
 	private String id = "";
+
+	private String title = "";
 
 	// YoukuPlayer实例，进行视频播放控制
 	private YoukuPlayer youkuPlayer;
@@ -210,6 +213,7 @@ public class PlayerActivity extends FragmentActivity {
 				local_vid = intent.getStringExtra("video_id");
 			} else { // 在线播放
 				id = intent.getStringExtra(EXTRA_VID);
+				title = intent.getStringExtra(EXTRA_NAME);
 			}
 		}
 
@@ -253,7 +257,6 @@ public class PlayerActivity extends FragmentActivity {
 
 		@Override
 		public void onClick(View view) {
-			// TODO Auto-generated method stub
 			switch (view.getId()) {
 			case R.id.biaoqing: // 切换标清
 				change(VideoQuality.STANDARD);
@@ -301,17 +304,16 @@ public class PlayerActivity extends FragmentActivity {
 	 */
 	private void doDownload() {
 		// 通过DownloadManager类实现视频下载
-		DownloadManager d = DownloadManager.getInstance();
+		final DownloadManager d = DownloadManager.getInstance();
 		/**
 		 * 第一个参数为需要下载的视频id 第二个参数为该视频的标题title 第三个对下载视频结束的监听，可以为空null
 		 */
-		d.createDownload("XNzgyODExNDY4", "魔女范冰冰扑倒黄晓明",
+		d.createDownload(vid, title,
 				new OnCreateDownloadListener() {
 
 					@Override
 					public void onfinish(boolean isNeedRefresh) {
-						// TODO Auto-generated method stub
-
+						d.getDownloadInfo(vid);
 					}
 				});
 	}

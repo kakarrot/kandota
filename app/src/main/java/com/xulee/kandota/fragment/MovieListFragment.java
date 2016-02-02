@@ -74,6 +74,7 @@ public class MovieListFragment extends BaseListFragment<Movie> {
                     Bundle extra = new Bundle();
                     String url = getPlayUrl(data.get(position).getHref());
                     extra.putString(PlayerActivity.EXTRA_VID, url);
+                    extra.putString(PlayerActivity.EXTRA_NAME, data.get(position).getTitle());
                     startActivity(PlayerActivity.class, extra);
                 }
             }

@@ -96,6 +96,8 @@
     <string name="action_feedback">意见反馈</string>
     <string name="action_more">更多</string>
     <string name="title_activity_feedback">意见反馈</string>
+    <string name="title_activity_cached">已下载</string>
+    <string name="title_activity_caching">下载中</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="action_send">发送</string>

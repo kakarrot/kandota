@@ -7,6 +7,8 @@ import android.content.Context;
 import com.liuguangqiang.framework.utils.DeviceId;
 import com.liuguangqiang.framework.utils.Logs;
 import com.liuguangqiang.framework.utils.MetaDataUtils;
+import com.xulee.kandota.act.youku.CachedActivity;
+import com.xulee.kandota.act.youku.CachingActivity;
 import com.xulee.kandota.constant.Constants;
 import com.xulee.kandota.module.AppModule;
 import com.xulee.kandota.module.PresenterModule;
@@ -58,8 +60,7 @@ public class DotaApplication extends Application {
              */
             @Override
             public Class<? extends Activity> getCachingActivityClass() {
-//                return CachingActivity.class;
-                return null;
+                return CachingActivity.class;
             }
 
             /**
@@ -70,8 +71,7 @@ public class DotaApplication extends Application {
 
             @Override
             public Class<? extends Activity> getCachedActivityClass() {
-//                return CachedActivity.class;
-                return null;
+                return CachedActivity.class;
             }
 
             /**
