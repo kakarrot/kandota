@@ -12,17 +12,20 @@ import com.xulee.kandota.adapter.MoviesAdapter;
 import com.xulee.kandota.base.BaseListFragment;
 import com.xulee.kandota.entity.Movie;
 import com.xulee.kandota.mvp.presenter.MoviePresenter;
+import com.xulee.kandota.mvp.presenter.SearchPresenter;
 import com.xulee.kandota.mvp.ui.MovieUi;
 import com.xulee.kandota.mvp.ui.MovieUiCallback;
+import com.xulee.kandota.mvp.ui.SearchUi;
+import com.xulee.kandota.mvp.ui.SearchUiCallback;
 
 /**
  * Created by LX on 2016/1/28.
  */
-public class SearchFragment extends BaseListFragment<Movie> implements MovieUi {
+public class SearchFragment extends BaseListFragment<Movie> implements SearchUi {
 
     private String keyword;
 
-    private MovieUiCallback mCallback;
+    private SearchUiCallback mCallback;
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
@@ -38,13 +41,13 @@ public class SearchFragment extends BaseListFragment<Movie> implements MovieUi {
     }
 
     @Override
-    public void setUiCallback(MovieUiCallback searchUiCallback) {
+    public void setUiCallback(SearchUiCallback searchUiCallback) {
         mCallback = searchUiCallback;
     }
 
     @Override
     public Presenter setPresenter() {
-        return new MoviePresenter(getActivity(), this);
+        return new SearchPresenter(getActivity(), this);
     }
 
     @Override
@@ -79,4 +82,5 @@ public class SearchFragment extends BaseListFragment<Movie> implements MovieUi {
         adapter.notifyDataSetChanged();
         requestData();
     }
+
 }

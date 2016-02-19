@@ -272,7 +272,7 @@ public class BaseAdapterHelper
 	public BaseAdapterHelper setImageUrl(int viewId, String imageUrl)
 	{
 		ImageView view = retrieveView(viewId);
-		ImageLoaderUtils.display(imageUrl, view, ImageLoaderUtils.createOptions(R.drawable.ic_default_avatar));
+		ImageLoaderUtils.display(imageUrl, view, ImageLoaderUtils.createOptions(R.drawable.icon_place_holder));
 		return this;
 	}
 

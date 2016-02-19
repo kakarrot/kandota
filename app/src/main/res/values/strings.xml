@@ -106,8 +106,8 @@
 
     <!-- Empty -->
     <string name="empty_defualt">加载失败, 请检查您的网络设置</string>
-    <string name="empty_bookshelf">孤独的小树, 需要书的陪伴</string>
-    <string name="empty_search">没有找到您想要的小说</string>
+    <string name="empty_bookshelf">无内容~</string>
+    <string name="empty_search">没有找到您想要的视频</string>
     <string name="empty_chapter">恭喜您发现一本无字天书</string>
 
     <!--Error-->

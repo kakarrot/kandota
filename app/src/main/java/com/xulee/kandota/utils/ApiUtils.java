@@ -1,5 +1,8 @@
 package com.xulee.kandota.utils;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+
 /**
  * API工具类，生产不同的API地址。
  */
@@ -12,6 +15,10 @@ public class ApiUtils {
     public final static String FORMAT_2_PARAMS = HOST_NAME + "/%s/%s";
 
     public final static String FORMAT_1_PARAMS = HOST_NAME + "/%s";
+
+    //优酷搜索接口
+    public static final String YOUKU_VIDEOS_URLS = "https://openapi.youku.com/v2/searches/video/by_keyword.json";
+    private static final int PAGE_LIMIT = 10;
 
     public static String build(String param) {
         return String.format(FORMAT_1_PARAMS, param);
@@ -42,6 +49,30 @@ public class ApiUtils {
     public static String getAuthors() {
         return String.format(FORMAT_1_PARAMS, "authors");
     }
+
+    /**
+     * 获取视频搜索Url
+     * @param category 关键字
+     * @param pageNum 页码
+     * @return
+     */
+    public static String getVideosListUrl(String category, int pageNum) {
+        StringBuffer sb = new StringBuffer();
+        sb.append(YOUKU_VIDEOS_URLS);
+        sb.append("?keyword=");
+        try {
+            sb.append(URLEncoder.encode(category, "UTF-8"));
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        sb.append("&page=");
+        sb.append(pageNum);
+        sb.append("&count=");
+        sb.append(PAGE_LIMIT);
+        sb.append("&public_type=all&paid=0&period=today&orderby=published&client_id=6ecd6970268b4c53");
+        return sb.toString().trim();
+    }
+    
     /**
      * 获取一个视频。
      *
@@ -105,15 +136,6 @@ public class ApiUtils {
      */
     public static String getConfigures() {
         return String.format(FORMAT_1_PARAMS, ApiModels.configures);
-    }
-
-    /**
-     * 检查Book是否更新
-     *
-     * @return
-     */
-    public static String checkBookUpdate() {
-        return String.format(FORMAT_2_PARAMS, ApiModels.movie, ApiModels.updates);
     }
 
     /**

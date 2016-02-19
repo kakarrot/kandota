@@ -27,6 +27,7 @@ import com.youku.service.download.OnCreateDownloadListener;
  */
 public class PlayerActivity extends FragmentActivity {
 
+	public static final String EXTRA_MOVIE = "movie";
 	public static String EXTRA_VID = "vid";
 	public static String EXTRA_NAME = "name";
 	private YoukuBasePlayerManager basePlayerManager;

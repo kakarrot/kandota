@@ -28,7 +28,7 @@ public class MovieModel {
     }
 
     public void getMovies(Context context, int pageindex, String keyword, final BaseRequestUi ui) {
-        String url = ApiUtils.getMovies();
+        String url = ApiUtils.getVideosListUrl(keyword, pageindex);
 //        RequestParams params = new RequestParams();
 //        params.put("page", pageindex);
 //        if (!TextUtils.isEmpty(keyword))
