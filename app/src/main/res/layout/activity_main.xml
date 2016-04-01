@@ -36,7 +36,7 @@
             style="@style/ListSelectorBorderless"
             android:layout_width="fill_parent"
             android:layout_height="56dp"
-            android:numColumns="3" />
+            android:numColumns="4" />
 
     </LinearLayout>
 </RelativeLayout>

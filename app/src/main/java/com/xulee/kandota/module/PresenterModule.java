@@ -4,7 +4,6 @@ import com.xulee.kandota.mvp.presenter.FeedbackPresenter;
 import com.xulee.kandota.mvp.presenter.LegalPresenter;
 import com.xulee.kandota.mvp.presenter.MainPresenter;
 import com.xulee.kandota.mvp.presenter.MoviePresenter;
-import com.xulee.kandota.mvp.presenter.AuthorPresenter;
 import com.xulee.kandota.mvp.presenter.SettingsPresenter;
 
 import dagger.Module;
@@ -17,7 +16,6 @@ import dagger.Module;
                 MoviePresenter.class,
                 MainPresenter.class,
                 LegalPresenter.class,
-                AuthorPresenter.class,
                 FeedbackPresenter.class,
                 SettingsPresenter.class
         }

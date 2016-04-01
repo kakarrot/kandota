@@ -1,6 +1,6 @@
 package com.xulee.kandota.module;
 
-import com.xulee.kandota.app.DotaApplication;
+import com.xulee.kandota.app.MyApplication;
 
 import dagger.Module;
 
@@ -9,7 +9,7 @@ import dagger.Module;
  */
 @Module(
         injects = {
-                DotaApplication.class
+                MyApplication.class
         }
 )
 public class AppModule {

@@ -15,8 +15,6 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.xulee.kandota.R;
 import com.xulee.kandota.act.FeedbackActivity;
 import com.xulee.kandota.act.SettingActivity;
-import com.xulee.kandota.act.youku.CachedActivity;
-import com.xulee.kandota.act.youku.CachingActivity;
 import com.xulee.kandota.base.BaseFragment;
 import com.xulee.kandota.entity.User;
 import com.xulee.kandota.entity.UserLevel;
@@ -89,12 +87,6 @@ public class MeFragment extends BaseFragment {
                 if (!LoginManager.isLogin())
                     showLoginDialog();
                 break;
-            case R.id.tv_caching:
-                startActivity(CachingActivity.class);
-                break;
-            case R.id.tv_download:
-                startActivity(CachedActivity.class);
-                break;
         }
     }
 
@@ -144,7 +136,7 @@ public class MeFragment extends BaseFragment {
     }
 
     private void getUser(String userId) {
-        String url = ApiUtils.getUser(userId);
+        String url = "";
         JHttpClient.get(getActivity(), url, null, new JsonResponseHandler<User>(User.class, false) {
 
             @Override

@@ -5,6 +5,7 @@ import android.content.Context;
 import com.liuguangqiang.framework.utils.NetworkUtils;
 import com.liuguangqiang.framework.utils.TimeUtils;
 import com.liuguangqiang.framework.utils.ToastUtils;
+import com.xulee.kandota.R;
 
 
 /**
@@ -30,7 +31,8 @@ public class FailureUtils {
             long now = TimeUtils.getTimestampSeconds();
             if (now - lastToastOnNetwork > 1) {
                 String username = LoginManager.isLogin() ? LoginManager.getUser().username : "";
-                ToastUtils.show(context, String.format("error_network_unavailable_format:%s", username));
+                String toastStr = context.getResources().getString(R.string.error_network_unavailable_format);
+                ToastUtils.show(context, toastStr);
             }
             lastToastOnNetwork = now;
         }

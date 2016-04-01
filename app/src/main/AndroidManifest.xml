@@ -24,7 +24,7 @@
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
     <application
-        android:name=".app.DotaApplication"
+        android:name=".app.MyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -63,14 +63,6 @@
             android:name=".act.BrowserActivity"
             android:windowSoftInputMode="stateAlwaysHidden" />
 
-        <activity
-            android:name=".act.youku.PlayerActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:exported="true"
-            android:launchMode="singleTask"
-            android:theme="@style/AppThemeRead"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-
         <!-- QQ登陆必须 -->
         <activity
             android:name="com.tencent.tauth.AuthActivity"
@@ -103,30 +95,6 @@
                 <action android:name="android.intent.action.DOWNLOAD_NOTIFICATION_CLICKED" />
             </intent-filter>
         </receiver>
-        <!-- 已经缓存的视频界面demo -->
-        <activity
-            android:name=".act.youku.CachedActivity"
-            android:label="@string/title_activity_cached"
-            android:launchMode="singleTask" />
-        <!-- 正在缓存的视频展示界面demo -->
-        <activity
-            android:name=".act.youku.CachingActivity"
-            android:label="@string/title_activity_caching"
-            android:launchMode="singleTask" />
-
-        <!-- youku 以下两个为下载时需要的添加的Service -->
-        <service
-            android:name="com.youku.service.download.DownloadService"
-            android:label="Youku Download Service"
-            android:process=":download">
-        </service>
-        <!--youku client_id及client_secret配置  这里需要切换为自己的id和secret -->
-        <meta-data
-            android:name="client_id"
-            android:value="4bdad7b4fa3be1fb" />
-        <meta-data
-            android:name="client_secret"
-            android:value="95580508ea19a5e00330fe5342d72786" />
     </application>
 
 </manifest>

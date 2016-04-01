@@ -19,8 +19,8 @@ package com.xulee.kandota.mvp.presenter;
 import android.content.Context;
 
 import com.liuguangqiang.android.mvp.Presenter;
-import com.xulee.kandota.app.DotaApplication;
-import com.xulee.kandota.entity.Movie;
+import com.xulee.kandota.app.MyApplication;
+import com.xulee.kandota.entity.NewsResponse;
 import com.xulee.kandota.mvp.model.MovieModel;
 import com.xulee.kandota.mvp.ui.SearchUi;
 import com.xulee.kandota.mvp.ui.SearchUiCallback;
@@ -40,7 +40,7 @@ public class SearchPresenter extends Presenter<SearchUi, SearchUiCallback> {
 
     public SearchPresenter(Context context, SearchUi ui) {
         super(ui);
-        DotaApplication.from(context).inject(this);
+        MyApplication.from(context).inject(this);
         mContext = context;
     }
 
@@ -58,8 +58,7 @@ public class SearchPresenter extends Presenter<SearchUi, SearchUiCallback> {
             }
 
             @Override
-            public void onItemClick(Movie book) {
-                SkipUtils.skipToMovieDetail(mContext, book);
+            public void onItemClick(NewsResponse book) {
             }
         };
     }

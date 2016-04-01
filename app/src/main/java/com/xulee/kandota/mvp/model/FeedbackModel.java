@@ -37,7 +37,7 @@ public class FeedbackModel {
     }
 
     public void feedback(final Context context, String content, final FeedbackUi ui) {
-        String url = ApiUtils.postFeedBack();
+        String url = "";
         RequestParams params = new RequestParams();
         params.put("content", content);
         JHttpClient.post(url, params, new BaseResponseHandler() {

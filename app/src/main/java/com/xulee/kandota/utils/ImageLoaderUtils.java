@@ -11,6 +11,7 @@ import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.ImageScaleType;
 import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
+import com.xulee.kandota.R;
 
 /**
  * ImageLoaderUtils
@@ -62,6 +63,7 @@ public class ImageLoaderUtils {
         return LOADER_STATUS == STATUS_OPENED;
     }
 
+
     /**
      * 显示图片。
      *
@@ -83,6 +85,12 @@ public class ImageLoaderUtils {
         }
     }
 
+    public static void display(String url, ImageView iv) {
+        if (wifiEnable || LOADER_STATUS == STATUS_OPENED) {
+            if (ImageLoader.getInstance().isInited())
+                ImageLoader.getInstance().displayImage(url, iv, createOptions(R.drawable.icon_place_holder));
+        }
+    }
 
     /**
      * 关闭图片加载
@@ -110,6 +118,20 @@ public class ImageLoaderUtils {
                 .showImageOnLoading(imgLoading).imageScaleType(ImageScaleType.IN_SAMPLE_POWER_OF_2)
                 .cacheInMemory(true).displayer(new RoundedBitmapDisplayer(radiusPixels))
                 .cacheOnDisk(true).build();
+    }
+
+    public static void pause(){
+        if (wifiEnable || LOADER_STATUS == STATUS_OPENED) {
+            if (ImageLoader.getInstance().isInited())
+                ImageLoader.getInstance().pause();
+        }
+    }
+
+    public static void resume(){
+        if (wifiEnable || LOADER_STATUS == STATUS_OPENED) {
+            if (ImageLoader.getInstance().isInited())
+                ImageLoader.getInstance().resume();
+        }
     }
 
 }

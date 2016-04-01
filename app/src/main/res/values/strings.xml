@@ -1,24 +1,27 @@
 <resources>
-    <string name="app_name">看Dota</string>
-
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="app_name">汕头橄榄台</string>
 
     <!-- Config -->
     <string name="UMENG_APPKEY">5368adef56240b3e410337a7</string>
     <string name="JPUSH_APPKEY">f0638222933af84af96ecad9</string>
 
+    <!-- News -->
+    <string name="str_live">广播电视直播</string>
+    <string name="str_vod_01">今日视线</string>
+    <string name="str_vod_02">汕头新闻</string>
+    <string name="str_vod">点播</string>
+
     <!-- Common -->
     <string name="str_retry">重试</string>
     <string name="str_cancel">取消</string>
     <string name="str_sure">确定</string>
-    <string name="double_click_to_quit">双击返回键,退出看Dota</string>
+    <string name="double_click_to_quit">双击返回键,退出汕头橄榄台</string>
     <string name="str_share_format">%s (分享自 @书吧)</string>
     <string name="str_book_shelf">收藏</string>
     <string name="str_book_library">发现</string>
     <string name="str_me">我</string>
     <string name="str_set">设置</string>
-    <string name="str_empty"></string>
+    <string name="str_empty">字符串为空</string>
     <string name="str_intro">简介</string>
     <string name="str_category">类型</string>
     <string name="str_chapter_title" formatted="false">第%s章 %s</string>
@@ -28,26 +31,10 @@
     <string name="str_book_publishing">连载中</string>
     <string name="str_lagel">加载中...</string>
     <string name="remove_from_bookshelf">取消收藏</string>
-    <string name="str_search_hint">请输入书名或者作者</string>
+    <string name="str_search_hint">请输入搜索内容</string>
     <string name="choose_login_type">请选择登录方式</string>
     <string name="login_desc">登录后同步数据</string>
     <string name="updated">已更新</string>
-
-    <!-- BookIntro -->
-    <string name="book_intro_detail">小说详情</string>
-    <string name="book_intro_author_format">%s</string>
-    <string name="book_intro_category_format">%s</string>
-    <string name="book_intro_status_format">%s</string>
-    <string name="book_intro_chapters">查看目录</string>
-    <string name="book_intro_add">加入书架</string>
-    <string name="book_intro_remove">移出书架</string>
-    <string name="book_intro_read_continue">继续阅读</string>
-    <string name="book_intro_related">相关推荐</string>
-
-    <!-- BookCity -->
-    <string name="book_city_recommend">推荐</string>
-    <string name="book_city_rank">排行</string>
-    <string name="book_city_category">分类</string>
 
     <!-- Set -->
     <string name="set_title">设置</string>
@@ -101,16 +88,17 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="action_send">发送</string>
+    <string name="action_share">分享</string>
     <string name="title_activity_book">BookActivity</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <!-- Empty -->
     <string name="empty_defualt">加载失败, 请检查您的网络设置</string>
     <string name="empty_bookshelf">无内容~</string>
-    <string name="empty_search">没有找到您想要的视频</string>
-    <string name="empty_chapter">恭喜您发现一本无字天书</string>
+    <string name="empty_search">没有找到您想要的内容</string>
+    <string name="empty_url">链接内容不存在~</string>
 
     <!--Error-->
-    <string name="error_network_unavailable_format">网络不可用 , %s请检查您的网络设置</string>
+    <string name="error_network_unavailable_format">网络不可用 , 请检查您的网络设置</string>
     <string name="error_not_find_market">你没有安装任何电子市场</string>
 </resources>

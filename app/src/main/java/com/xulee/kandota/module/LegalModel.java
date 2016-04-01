@@ -18,7 +18,7 @@ public class LegalModel {
     }
 
     public void getLegal(final LegalUi ui) {
-        String url = ApiUtils.getStatement();
+        String url = "";
         JHttpClient.get(url, null, new StringResponseHandler() {
             @Override
             public void onSuccess(String result) {

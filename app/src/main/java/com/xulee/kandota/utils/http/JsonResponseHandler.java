@@ -25,6 +25,8 @@ public class JsonResponseHandler<T> extends BaseResponseHandler {
         this.isRootNode = isRootNode;
     }
 
+
+
     @Override
     public void onSuccess(String json) {
         if (isRootNode) {

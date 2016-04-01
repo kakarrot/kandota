@@ -3,9 +3,7 @@ package com.xulee.kandota.act;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-
 import android.support.v4.view.ViewPager;
-
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.SubMenu;
@@ -18,7 +16,6 @@ import com.xulee.kandota.R;
 import com.xulee.kandota.adapter.MainMenuAdapter;
 import com.xulee.kandota.adapter.MainPagerAdapter;
 import com.xulee.kandota.base.BaseActivity;
-
 import com.xulee.kandota.entity.MainMenuItem;
 import com.xulee.kandota.mvp.presenter.MainPresenter;
 import com.xulee.kandota.mvp.ui.MainUi;
@@ -26,7 +23,6 @@ import com.xulee.kandota.mvp.ui.MainUiCallback;
 import com.xulee.kandota.ui.SlowViewPager;
 import com.xulee.kandota.utils.ImageLoaderUtils;
 import com.xulee.kandota.utils.level.LevelUtils;
-import com.youku.player.YoukuPlayerBaseConfiguration;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -93,7 +89,6 @@ public class MainActivity extends BaseActivity implements MainUi {
     public void onBackPressed() {
         if (doubleBackToExitPressedOnce) {
             exitApp();
-            YoukuPlayerBaseConfiguration.exit();
             return;
         }
         this.doubleBackToExitPressedOnce = true;

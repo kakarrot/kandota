@@ -17,10 +17,10 @@
 package com.xulee.kandota.mvp.ui;
 
 import com.liuguangqiang.android.mvp.BaseRequestUi;
-import com.xulee.kandota.entity.Movie;
+import com.xulee.kandota.entity.NewsResponse;
 
 /**
  * Created by Eric on 15/5/21.
  */
-public interface SearchUi extends BaseRequestUi<Movie, SearchUiCallback> {
+public interface SearchUi extends BaseRequestUi<NewsResponse, SearchUiCallback> {
 }

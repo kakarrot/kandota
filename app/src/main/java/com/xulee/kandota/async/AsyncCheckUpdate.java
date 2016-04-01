@@ -40,12 +40,12 @@ public class AsyncCheckUpdate {
      * 设置只检查模式，不提醒，当前已经是最新版本
      */
     public void setOnlyCheck() {
-        this.onlyCheck = true;
+        this.onlyCheck = false;
     }
 
     public void checkUpdate() {
         if (mAct == null) return;
-        String url = ApiUtils.getConfigures();
+        String url = ApiUtils.getVersionUrl();
         JHttpClient.get(null, url, null, new JsonResponseHandler<Configures>(Configures.class, false) {
 
             @Override
@@ -63,8 +63,8 @@ public class AsyncCheckUpdate {
             @Override
             public void onSuccess(Configures result) {
 
-                if (result != null && result.upgrade != null) {
-                    if (checkIsLatestVersion(AppUtils.getVersionName(mAct.getApplicationContext()), result.upgrade.android.ver)) {
+                if (result != null && result.data != null) {
+                    if (checkIsLatestVersion(AppUtils.getVersionName(mAct.getApplicationContext()), result.data.vercode)) {
                         if (!onlyCheck)
                             ToastUtils.show(mAct.getApplicationContext(), mAct.getString(R.string.update_current_is_latest));
                     } else {
@@ -79,7 +79,7 @@ public class AsyncCheckUpdate {
 
     private void showUpdateDailog(final Configures result) {
         String title = mAct.getString(R.string.update_title);
-        String message = String.format(mAct.getString(R.string.update_message), result.upgrade.android.ver);
+        String message = String.format(mAct.getString(R.string.update_message), result.data.vercode);
         String sure = mAct.getString(R.string.update_sure);
         String cancel = mAct.getString(R.string.update_cancel);
         if (logoutDialog == null) {
@@ -89,8 +89,8 @@ public class AsyncCheckUpdate {
             logoutDialog.setPositiveButton(sure, cancel, new OnPositiveClickListener() {
                 @Override
                 public void onClick() {
-                    downloadLatest(mAct.getApplicationContext(), result.upgrade.android.url,
-                            result.upgrade.android.ver);
+                    downloadLatest(mAct.getApplicationContext(), result.data.downurl,
+                            result.data.vercode);
                 }
             });
         }

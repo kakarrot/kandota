@@ -21,7 +21,7 @@ public class LevelUtils {
     private final static String DAILY_LOGIN = "DAILY_LOGIN";
 
     private static void addExp(int type, BaseResponseHandler responseHandler) {
-        String url = ApiUtils.postLevel();
+        String url = "";
         RequestParams param = new RequestParams();
         param.put("type", "" + type);
         JHttpClient.post(url, param, responseHandler);

@@ -1,11 +1,11 @@
 package com.xulee.kandota.mvp.ui;
 
 import com.liuguangqiang.android.mvp.BaseRequestUi;
-import com.xulee.kandota.entity.Movie;
+import com.xulee.kandota.entity.NewsResponse;
 
 /**
  * Created by LX on 2016/1/27.
  */
-public interface MovieUi extends BaseRequestUi<Movie, MovieUiCallback> {
+public interface MovieUi extends BaseRequestUi<NewsResponse, MovieUiCallback> {
 
 }

@@ -5,34 +5,17 @@ package com.xulee.kandota.entity;
  */
 public class Configures {
 
-    public Upgrade upgrade;
+    public String status;
+    public String message;
+    public UpGradeInfo data;
 
-    public Functions functions;
-
-    public class Upgrade {
-        public Android android;
+    public class UpGradeInfo {
+        public String id;
+        public String vercode;
+        public String desc;
+        public String device_type;
+        public String source;
+        public String dateline;
+        public String downurl;
     }
-
-    public class Android {
-
-        public String url;
-
-        public String ver;
-
-    }
-
-
-    public class Functions {
-
-        /**
-         * 是否开启智能阅读,0:关闭，1:开启
-         */
-        public int auto_reading = 1;
-
-        public boolean autoReading() {
-            return auto_reading == 1;
-        }
-
-    }
-
 }

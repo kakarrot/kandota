@@ -17,14 +17,14 @@
 package com.xulee.kandota.mvp.ui;
 
 
-import com.xulee.kandota.entity.Movie;
+import com.xulee.kandota.entity.NewsResponse;
 
 /**
  * Created by Eric on 15/5/21.
  */
 public interface SearchUiCallback {
 
-    void onItemClick(Movie book);
+    void onItemClick(NewsResponse book);
 
     void getMovies(int pageindex, String keyword);
 

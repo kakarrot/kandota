@@ -5,6 +5,9 @@ package com.xulee.kandota.constant;
  */
 public class Constants {
 
+    //app 唯一标识符
+    public static String CFLAG = "stglt";
+
     public static boolean DEBUG = true;
 
     public static boolean DISABLE_UPDATE = false;
@@ -15,11 +18,6 @@ public class Constants {
     public static final String PLATFORM = Platform.COMMON;
 
     public static String OEPN_UD_ID = "";
-
-    /**
-     * 是否开启智能阅读模式。
-     */
-    public static boolean openAutoReading = false;
 
     /**
      * 在SharedPreferences中保存设置通用的Name。

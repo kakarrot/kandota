@@ -10,12 +10,15 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.liuguangqiang.framework.utils.AppUtils;
+import com.liuguangqiang.framework.utils.StringUtils;
 import com.loopj.android.http.RequestParams;
 import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 import com.xulee.kandota.R;
+import com.xulee.kandota.async.AsyncUtils;
 import com.xulee.kandota.base.BaseActivity;
 import com.xulee.kandota.constant.Constants;
+import com.xulee.kandota.entity.AdsResponse;
 import com.xulee.kandota.entity.Configures;
 import com.xulee.kandota.utils.ApiUtils;
 import com.xulee.kandota.utils.ImageLoaderUtils;
@@ -25,9 +28,7 @@ import com.xulee.kandota.utils.http.JsonResponseHandler;
 
 public class SplashActivity extends BaseActivity {
 
-    private static final int mDuration = 3000;
-
-    private static final String imgStr = "http://kandota.thnuclub.com/static/launchimage.png";
+    private static final int mDuration = 2000;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,34 +37,28 @@ public class SplashActivity extends BaseActivity {
     }
 
     private void patchAd() {
-        ImageView iv_ads = (ImageView) this.findViewById(R.id.iv_lanucher_ads);
-        ImageLoaderUtils.display(imgStr, iv_ads, ImageLoaderUtils.createOptions(R.drawable.splash_bg), new ImageLoadingListener() {
+        AsyncUtils.getAds(this, new JsonResponseHandler<AdsResponse>(AdsResponse.class){
             @Override
-            public void onLoadingStarted(String imageUri, View view) {
-
-            }
-
-            @Override
-            public void onLoadingFailed(String imageUri, View view, FailReason failReason) {
-
-            }
-
-            @Override
-            public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
-//                if (NetworkUtils.isAvailable(getApplicationContext())) {
-//                    connect();
-//                } else {
-//                    skipToMain();
-//                }
+            public void onSuccess(AdsResponse result) {
+                super.onSuccess(result);
+                if(null != result && "ok".equals(result.status) && !StringUtils.isEmptyOrNull(result.ad.image)){
+                    showAds(result.ad.image);
+                }
                 skipToMain();
             }
 
             @Override
-            public void onLoadingCancelled(String imageUri, View view) {
-
+            public void onFailure(String msg) {
+                super.onFailure(msg);
+                skipToMain();
             }
         });
 
+    }
+
+    private void showAds(String imgUrl){
+        ImageView iv_ads = (ImageView) this.findViewById(R.id.iv_lanucher_ads);
+        ImageLoaderUtils.display(imgUrl, iv_ads, ImageLoaderUtils.createOptions(R.drawable.splash_bg));
     }
 
     public boolean canJumpImmediately = false;
@@ -98,11 +93,6 @@ public class SplashActivity extends BaseActivity {
         super.onWindowFocusChanged(hasFocus);
         if (hasFocus) {
             getScreenSize();
-//            if (NetworkUtils.isAvailable(getApplicationContext())) {
-//                connect();
-//            } else {
-//                skipToMain();
-//            }
         }
     }
 
@@ -125,29 +115,6 @@ public class SplashActivity extends BaseActivity {
                 finish();
             }
         }, mDuration);
-    }
-
-    /**
-     * 检查更新后跳转
-     */
-    private void connect() {
-        String url = ApiUtils.getConfigures();
-        RequestParams params = new RequestParams();
-        params.put("version", AppUtils.getVersionName(this));
-        params.put("platform", Constants.PLATFORM);
-        JHttpClient.get(getApplicationContext(), url, params, new JsonResponseHandler<Configures>(Configures.class, false) {
-            @Override
-            public void onSuccess(Configures result) {
-                if (result != null && result.functions != null) {
-                    Constants.openAutoReading = result.functions.autoReading();
-                }
-            }
-
-            @Override
-            public void onFinish() {
-                skipToMain();
-            }
-        });
     }
 
 }

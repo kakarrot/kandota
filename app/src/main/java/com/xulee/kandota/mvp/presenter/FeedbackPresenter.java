@@ -20,7 +20,7 @@ import android.content.Context;
 
 
 import com.liuguangqiang.android.mvp.Presenter;
-import com.xulee.kandota.app.DotaApplication;
+import com.xulee.kandota.app.MyApplication;
 import com.xulee.kandota.mvp.model.FeedbackModel;
 import com.xulee.kandota.mvp.ui.FeedbackUi;
 import com.xulee.kandota.mvp.ui.FeedbackUiCallback;
@@ -39,7 +39,7 @@ public class FeedbackPresenter extends Presenter<FeedbackUi, FeedbackUiCallback>
 
     public FeedbackPresenter(Context context, FeedbackUi ui) {
         super(ui);
-        DotaApplication.from(context).inject(this);
+        MyApplication.from(context).inject(this);
         mContext = context;
     }
 

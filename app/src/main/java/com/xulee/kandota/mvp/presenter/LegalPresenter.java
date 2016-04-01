@@ -4,7 +4,7 @@ import android.content.Context;
 
 
 import com.liuguangqiang.android.mvp.Presenter;
-import com.xulee.kandota.app.DotaApplication;
+import com.xulee.kandota.app.MyApplication;
 import com.xulee.kandota.module.LegalModel;
 import com.xulee.kandota.mvp.ui.LegalUi;
 import com.xulee.kandota.mvp.ui.LegalUiCallback;
@@ -21,7 +21,7 @@ public class LegalPresenter extends Presenter<LegalUi, LegalUiCallback> {
 
     public LegalPresenter(Context context, LegalUi ui) {
         super(ui);
-        DotaApplication.from(context).inject(this);
+        MyApplication.from(context).inject(this);
     }
 
     @Override

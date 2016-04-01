@@ -3,10 +3,13 @@ package com.xulee.kandota.utils.http;
 import android.content.Context;
 import android.util.Log;
 
+import com.liuguangqiang.framework.utils.NetworkUtils;
+import com.liuguangqiang.framework.utils.ToastUtils;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.RequestParams;
 import com.loopj.android.http.TextHttpResponseHandler;
 
+import com.xulee.kandota.R;
 import com.xulee.kandota.constant.Constants;
 import com.xulee.kandota.entity.Auth;
 import com.xulee.kandota.utils.FailureUtils;
@@ -19,7 +22,7 @@ public class JHttpClient {
 
     private static final String TAG = "JHttpClient";
 
-    private static final int CONNECT_TIMEOUT = 20 * 1000;
+    private static final int CONNECT_TIMEOUT = 10 * 1000;
 
     private static AsyncHttpClient httpClient;
 
@@ -57,6 +60,10 @@ public class JHttpClient {
      */
     public static void get(final Context context, String url, RequestParams params, final BaseResponseHandler handler) {
         createHttpCilent();
+//        if(!NetworkUtils.isAvailable(context)){
+//            ToastUtils.show(context, R.string.error_network_unavailable_format);
+//            return;
+//        }
         httpClient.get(url, params, new TextHttpResponseHandler() {
             @Override
             public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {

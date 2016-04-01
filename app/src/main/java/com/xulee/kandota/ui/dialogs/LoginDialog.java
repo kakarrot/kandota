@@ -17,7 +17,6 @@ import com.xulee.kandota.login.AuthSuccess;
 import com.xulee.kandota.login.LoginType;
 import com.xulee.kandota.login.SinaWeiboLogin;
 import com.xulee.kandota.login.TencentLogin;
-import com.xulee.kandota.utils.ApiUtils;
 import com.xulee.kandota.utils.LoginManager;
 import com.xulee.kandota.utils.http.BaseResponseHandler;
 import com.xulee.kandota.utils.http.JHttpClient;
@@ -95,7 +94,7 @@ public class LoginDialog implements AuthListener {
     }
 
     private void login(final AuthSuccess authSuccess) {
-        String url = ApiUtils.putAuth();
+        String url = "";
         System.out.println("login:" + url);
         RequestParams params = new RequestParams();
         params.put("open_id", authSuccess.getOpenId().toLowerCase());
@@ -126,7 +125,7 @@ public class LoginDialog implements AuthListener {
     }
 
     private void reg(AuthSuccess authSuccess) {
-        String url = ApiUtils.postUser();
+        String url = "";
         System.out.println("reg:" + url);
         RequestParams params = new RequestParams();
         params.put("username", authSuccess.getUsername());
@@ -152,7 +151,7 @@ public class LoginDialog implements AuthListener {
     }
 
     private void getUser(String userId) {
-        String url = ApiUtils.getUser(userId);
+        String url = "";
         JHttpClient.get(act, url, null, new JsonResponseHandler<User>(User.class, false) {
 
             @Override

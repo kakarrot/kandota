@@ -5,7 +5,7 @@ import android.view.View;
 
 
 import com.liuguangqiang.android.mvp.Presenter;
-import com.xulee.kandota.app.DotaApplication;
+import com.xulee.kandota.app.MyApplication;
 import com.xulee.kandota.mvp.model.SettingsModel;
 import com.xulee.kandota.mvp.ui.SettingUiCallback;
 import com.xulee.kandota.mvp.ui.SettingsUi;
@@ -26,7 +26,7 @@ public class SettingsPresenter extends Presenter<SettingsUi, SettingUiCallback> 
     public SettingsPresenter(Context context, SettingsUi ui) {
         super(ui);
         this.mContext = context;
-        DotaApplication.from(context).inject(this);
+        MyApplication.from(context).inject(this);
     }
 
     @Override
