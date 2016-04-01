@@ -43,10 +43,16 @@ public abstract class BaseListAdapter<T> extends BaseAdapter implements
     }
 
     public void refresh(Collection<T> datas) {
+        if(null == this.mDatas){
+            return;
+        }
         if (datas == null) {
             datas = new ArrayList<T>(0);
         }
-        this.mDatas = datas;
+        if(this.mDatas.size() > 0){
+            this.mDatas.clear();
+        }
+        this.mDatas.addAll(datas);
         notifyDataSetChanged();
     }
 
