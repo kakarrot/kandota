@@ -15,6 +15,7 @@
     <string name="str_retry">重试</string>
     <string name="str_cancel">取消</string>
     <string name="str_sure">确定</string>
+    <string name="str_back_home">返回首页</string>
     <string name="double_click_to_quit">双击返回键,退出汕头橄榄台</string>
     <string name="str_share_format">%s (分享自 @书吧)</string>
     <string name="str_book_shelf">收藏</string>
@@ -89,7 +90,6 @@
     <string name="action_settings">Settings</string>
     <string name="action_send">发送</string>
     <string name="action_share">分享</string>
-    <string name="title_activity_book">BookActivity</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <!-- Empty -->

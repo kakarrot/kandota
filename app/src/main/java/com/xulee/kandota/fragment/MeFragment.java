@@ -1,9 +1,7 @@
 package com.xulee.kandota.fragment;
 
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -20,7 +18,6 @@ import com.xulee.kandota.entity.User;
 import com.xulee.kandota.entity.UserLevel;
 import com.xulee.kandota.listeners.LoginListener;
 import com.xulee.kandota.ui.dialogs.LoginDialog;
-import com.xulee.kandota.utils.ApiUtils;
 import com.xulee.kandota.utils.ImageLoaderUtils;
 import com.xulee.kandota.utils.LoginManager;
 import com.xulee.kandota.utils.http.JHttpClient;
@@ -45,11 +42,8 @@ public class MeFragment extends BaseFragment {
     private LoginDialog loginDialog;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_me, container, false);
-        ButterKnife.bind(this, view);
-        return view;
+    protected int getContentView() {
+        return R.layout.fragment_me;
     }
 
     @Override
@@ -153,13 +147,9 @@ public class MeFragment extends BaseFragment {
 
             @Override
             public void onFinish() {
+
             }
         });
     }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        ButterKnife.unbind(this);
-    }
 }

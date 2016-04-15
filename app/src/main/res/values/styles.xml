@@ -1,25 +1,39 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <style name="AppBaseTheme" parent="@android:style/Theme.Holo.Light"></style>
-
-    <style name="AppTheme" parent="AppBaseTheme">
-        <item name="android:actionBarSize">@dimen/action_bar_height</item>
-        <item name="android:windowBackground">@color/main_bg_color</item>
-        <item name="android:homeAsUpIndicator">@drawable/ic_action_home</item>
-        <item name="android:logo">@drawable/transparent_bg</item>
-        <item name="android:windowContentOverlay">@drawable/action_bar_overlay</item>
-        <item name="android:actionBarStyle">@style/MyActionBar</item>
-        <item name="android:dropDownListViewStyle">@style/MyDropDownListView</item>
-        <item name="android:selectableItemBackground">@drawable/action_bar_item_bg</item>
-        <item name="android:actionModeBackground">@color/action_bar_bg_color</item>
-        <item name="android:actionModeStyle">@style/MyActionModeStyle</item>
-        <item name="android:actionModeCloseDrawable">@drawable/ic_action_mode_cancel</item>
-        <item name="android:actionMenuTextColor">@color/action_bar_text_color</item>
-        <item name="android:actionMenuTextAppearance">@style/MyActionBar.MenuItem</item>
-        <item name="android:actionModeCloseButtonStyle">@style/MyActionModeCloseButton</item>
+    <!-- Base application theme. -->
+    <style name="AppBaseTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowIsTranslucent">true</item>
     </style>
 
-    <style name="SplashTheme" parent="android:Theme">
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="AppTheme" parent="AppBaseTheme">
+        <item name="actionBarSize">0dp</item>
+        <item name="android:windowBackground">@color/main_bg_color</item>
+        <item name="homeAsUpIndicator">@drawable/ic_action_home</item>
+        <item name="logo">@drawable/transparent_bg</item>
+        <item name="android:windowContentOverlay">@drawable/action_bar_overlay</item>
+        <item name="actionBarStyle">@style/MyActionBar</item>
+        <item name="dropDownListViewStyle">@style/MyDropDownListView</item>
+        <item name="selectableItemBackground">@drawable/action_bar_item_bg</item>
+        <item name="actionModeBackground">@color/action_bar_bg_color</item>
+        <item name="actionModeStyle">@style/MyActionModeStyle</item>
+        <item name="actionModeCloseDrawable">@drawable/ic_action_mode_cancel</item>
+        <item name="actionMenuTextColor">@color/action_bar_text_color</item>
+        <item name="actionMenuTextAppearance">@style/MyActionBar.MenuItem</item>
+        <item name="actionModeCloseButtonStyle">@style/MyActionModeCloseButton</item>
+    </style>
+
+    <style name="SplashTheme" parent="AppTheme.NoActionBar">
         <item name="android:windowBackground">@drawable/splash_bg</item>
         <item name="android:windowNoTitle">true</item>
     </style>
@@ -28,27 +42,27 @@
         <item name="android:windowIsTranslucent">true</item>
     </style>
 
-    <style name="AppThemeRead" parent="AppTheme">
-        <item name="android:windowActionBar">false</item>
-        <item name="android:windowNoTitle">true</item>
+    <style name="AppThemeFullScreen" parent="AppTheme">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">false</item>
         <item name="android:windowFullscreen">true</item>
         <item name="android:windowContentOverlay">@null</item>
     </style>
 
     <!-- ActionBar样式 -->
-    <style name="MyActionBar" parent="@android:style/Widget.Holo.Light.ActionBar.Solid">
-        <item name="android:background">@color/action_bar_bg_color</item>
-        <item name="android:titleTextStyle">@style/MyActionBar.Title</item>
-        <item name="android:height">@dimen/action_bar_height</item>
+    <style name="MyActionBar" parent="AppTheme.AppBarOverlay">
+        <item name="background">@color/action_bar_bg_color</item>
+        <item name="titleTextStyle">@style/MyActionBar.Title</item>
+        <item name="height">@dimen/action_bar_height</item>
     </style>
 
     <!-- ActionBar字体 -->
-    <style name="MyActionBar.Title" parent="@android:style/TextAppearance.Holo.Widget.ActionBar.Title">
+    <style name="MyActionBar.Title" parent="AppTheme.AppBarOverlay">
         <item name="android:textColor">@color/action_bar_text_color</item>
         <item name="android:textSize">@dimen/font_size_action_title</item>
     </style>
 
-    <style name="MyActionBar.MenuItem" parent="android:style/TextAppearance.Holo.Widget.ActionBar.Menu">
+    <style name="MyActionBar.MenuItem" parent="AppTheme.AppBarOverlay">
         <item name="android:textSize">@dimen/font_size_middle</item>
         <item name="android:textStyle">normal</item>
         <item name="android:height">@dimen/action_bar_height</item>
@@ -56,8 +70,8 @@
 
     <!-- Setup the style of the ActionMode here -->
     <style name="MyActionModeStyle">
-        <item name="android:titleTextStyle">@style/MyActionModeTitle</item>
-        <item name="android:actionModeSplitBackground">@mipmap/ic_launcher</item>
+        <item name="titleTextStyle">@style/MyActionModeTitle</item>
+        <item name="actionModeSplitBackground">@mipmap/ic_launcher</item>
     </style>
 
     <!-- Setup the text style of the ActionMode here -->
@@ -66,7 +80,7 @@
         <item name="android:textSize">@dimen/font_size_big</item>
     </style>
 
-    <style name="MyActionModeCloseButton" parent="@android:style/Widget.Holo.Light.ActionButton.CloseMode">
+    <style name="MyActionModeCloseButton" parent="AppTheme.AppBarOverlay">
         <item name="android:background">@drawable/action_bar_item_bg</item>
     </style>
 

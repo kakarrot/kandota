@@ -1,5 +1,6 @@
 package com.xulee.kandota.utils;
 
+import com.liuguangqiang.framework.utils.Logs;
 import com.xulee.kandota.constant.Constants;
 import com.xulee.kandota.utils.des.DES;
 
@@ -11,16 +12,21 @@ import java.net.URLEncoder;
  */
 public class ApiUtils {
 
-    public static final String URL_BASE_YAO = "http://yao.cutv.com/plugin.php?";
-
+    public static final String URL_BASE_YAO = "http://yao.cutv.com/plugin.php?id=cutv_shake:";
     //开机广告
-    public static final String URL_GET_ADS = URL_BASE_YAO + "id=cutv_shake:api_get_front_in_ad";
+    public static final String URL_GET_ADS = URL_BASE_YAO + "api_get_front_in_ad";
 
     //获取线上最新版本信息
-    public static final String URL_GET_VERSION = URL_BASE_YAO + "id=cutv_shake:api_get_version";
+    public static final String URL_GET_VERSION = URL_BASE_YAO + "api_get_version";
 
     //获取资讯页面数据
     public final static String URL_GET_NEWS = "http://sttv.img.cutv.com/getcontentlist_%s_%s.json";
+
+    //获取互动页面数据
+    public final static String URL_GET_HUDONG = URL_BASE_YAO + "api_get_rediantuijian";
+
+    //获取互动标识符 //http://yao.cutv.com/checkup.php?pos=tv
+    public final static String URL_GET_HUDONG_TAG = "http://yao.cutv.com/checkup.php?pos=tv";
 
     /**
      * 获取开机广告
@@ -28,7 +34,7 @@ public class ApiUtils {
      */
     public static String getLanuchAdsUrl(){
         String qParam = "source=yaoyiyao&cflag=" + Constants.CFLAG;
-        return getEncryptUrl(URL_GET_ADS, qParam);
+        return getEncryptUrl(qParam);
     }
 
     /**
@@ -38,7 +44,7 @@ public class ApiUtils {
     public static String getVersionUrl(){
         String qParam = "device=android&source=" + Constants.CFLAG + "&time_str="
                 + Long.toString(System.currentTimeMillis());
-        return getEncryptUrl(URL_GET_VERSION, qParam);
+        return getEncryptUrl(qParam);
     }
 
     /**
@@ -52,12 +58,32 @@ public class ApiUtils {
     }
 
     /**
+     * 获取互动页面数据Url
+     * @return
+     */
+    public static String getHudongUrl(){
+        String qParam = "source=yaoyiyao&device=android&v=1&cflag=" + Constants.CFLAG + "&time_str="
+                + Long.toString(System.currentTimeMillis());
+        Logs.i("加密前：" + qParam);
+        return getEncryptUrl(qParam);
+    }
+
+
+    /**
+     * 获取互动标识符Url
+     * @return
+     */
+    public static String getHudongTagUrl(){
+        String qParam = "pos=tv";
+        return getEncryptUrl(qParam);
+    }
+
+    /**
      * 对请求字符串进行加密
-     * @param url
      * @param param
      * @return
      */
-    protected static String getEncryptUrl(String url, String param){
+    public static String getEncryptUrl(String param){
         DES des = new DES(DES.key);
         String encryptQParam = null;
         try {
@@ -65,13 +91,8 @@ public class ApiUtils {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-        encryptQParam = encryptQParam.replace("+", "_cutv_");
-        StringBuffer sb = new StringBuffer();
-        sb.append(url);
-        sb.append("&q=");
-        sb.append(encryptQParam);
-        return sb.toString().trim();
+//        encryptQParam = encryptQParam.replace("+", "_cutv_");
+        return encryptQParam;
     }
 
 }

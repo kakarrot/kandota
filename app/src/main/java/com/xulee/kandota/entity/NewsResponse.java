@@ -1,15 +1,15 @@
 package com.xulee.kandota.entity;
 
+import com.xulee.kandota.entity.base.BaseResponse;
+
 import java.util.List;
 
 /**
  * 资讯页请求
  * Created by LX on 2016/1/27.
  */
-public class NewsResponse {
+public class NewsResponse  extends BaseResponse {
 
-    public String status;
-    public String message;
     public RecommendTvData recommend_tv[]; //两个推荐电视位数据，今日视线，汕头新闻
     public List<News> news;    //新闻分类数据
     public List<RecommendNews> recommend_news; //轮播图数据

@@ -1,7 +1,6 @@
 package com.xulee.kandota.fragment;
 
 import android.graphics.Color;
-import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
@@ -26,7 +25,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 
 /**
  * 资讯
@@ -47,16 +45,12 @@ public class NewsFragment extends BaseFragment implements NewsRefreshListener {
     private NewsResponse mResponse;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_news, container, false);
-        ButterKnife.bind(this, view);
-        initView();
-
-        return view;
+    protected int getContentView() {
+        return R.layout.fragment_news;
     }
 
-    private void initView() {
+    @Override
+    protected void initViews() {
         /* TODO: Initialize MagicHeaderViewPager. Override initTabsArea() to initialize tabs or stable area. */
         mMagicHeaderViewPager = new MagicHeaderViewPager(getActivity()) {
             @Override
@@ -149,6 +143,7 @@ public class NewsFragment extends BaseFragment implements NewsRefreshListener {
     }
 
     ArrayList<BannerItem> list;
+
     @Override
     public void onNewsRefresh(NewsResponse response) {
         if (null == response || null == response.recommend_news || response.recommend_news.size() == 0) {
@@ -164,7 +159,7 @@ public class NewsFragment extends BaseFragment implements NewsRefreshListener {
             list.add(item);
         }
         banner.setSource(list);
-        if(list.size() > 0){
+        if (list.size() > 0) {
             banner.startScroll();
         }
     }

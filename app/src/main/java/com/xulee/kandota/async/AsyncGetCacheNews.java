@@ -11,12 +11,7 @@ import com.xulee.kandota.entity.NewsResponse;
 
 
 /**
- * 获取缓存的视频。
- * <p>
- * 比如: 推荐,排行
- * </p>
- * <p/>
- * Created by John on 2014年7月19日
+ * 获取缓存的新闻
  */
 public class AsyncGetCacheNews extends AsyncTask<String, Integer, NewsResponse> {
 

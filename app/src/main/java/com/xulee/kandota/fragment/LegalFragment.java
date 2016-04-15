@@ -1,9 +1,5 @@
 package com.xulee.kandota.fragment;
 
-import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.liuguangqiang.android.mvp.Presenter;
@@ -14,7 +10,6 @@ import com.xulee.kandota.mvp.ui.LegalUi;
 import com.xulee.kandota.mvp.ui.LegalUiCallback;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 
 public class LegalFragment extends BaseFragment implements LegalUi {
 
@@ -22,11 +17,8 @@ public class LegalFragment extends BaseFragment implements LegalUi {
     TextView tvLegal;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.activity_legal, container, false);
-        ButterKnife.bind(this, rootView);
-        return rootView;
+    protected int getContentView() {
+        return R.layout.activity_legal;
     }
 
     @Override

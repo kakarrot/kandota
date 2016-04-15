@@ -7,6 +7,7 @@ import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.SubMenu;
+import android.view.View;
 import android.widget.GridView;
 import android.widget.Toast;
 
@@ -55,8 +56,6 @@ public class MainActivity extends BaseActivity implements MainUi {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        ButterKnife.bind(this);
         if (!NetworkUtils.isWifiEnabled(getApplicationContext())) {
             ImageLoaderUtils.setWifiEnable(false);
         }
@@ -64,6 +63,11 @@ public class MainActivity extends BaseActivity implements MainUi {
         initViews();
         initActionBar();
         LevelUtils.dailyLogin(getApplicationContext());
+    }
+
+    @Override
+    protected int getContentView() {
+        return R.layout.activity_main;
     }
 
     @Override
@@ -76,13 +80,14 @@ public class MainActivity extends BaseActivity implements MainUi {
     }
 
     private void initActionBar() {
-        getActionBar().setDisplayShowCustomEnabled(true);
-        getActionBar().setDisplayUseLogoEnabled(false);
-        getActionBar().setDisplayShowHomeEnabled(false);
-        getActionBar().setDisplayHomeAsUpEnabled(false);
-        getActionBar().setDisplayShowTitleEnabled(false);
-        getActionBar().setIcon(R.drawable.transparent_bg);
-        getActionBar().setCustomView(R.layout.layout_main_action);
+        hideActionBarBack();
+        setTitle(R.string.app_name);
+        setTitleBarRight(R.drawable.ic_action_setting, new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
     }
 
     @Override
@@ -147,34 +152,5 @@ public class MainActivity extends BaseActivity implements MainUi {
     public void onMenuItemClick(int position) {
         selectedMenu(position);
         viewPager.setCurrentItem(position);
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(final Menu menu) {
-        menu.add(0, ACTION_SEARCH, 0, R.string.action_search)
-                .setIcon(R.drawable.ic_action_search).setIntent(new Intent(getApplicationContext(),
-                SearchActivity.class)).setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
-
-        SubMenu submenu = menu.addSubMenu(0, 1, 0, R.string.action_more);
-
-        submenu.add(0, ACTION_SETTING, 2, R.string.action_setting).setIntent(
-                new Intent(getApplicationContext(), SettingActivity.class));
-
-        submenu.add(0, ACTION_FEEDBACK, 1, R.string.action_feedback);
-
-        submenu.getItem().setIcon(R.drawable.ic_action_more)
-                .setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
-
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case ACTION_FEEDBACK:
-                startActivity(FeedbackActivity.class);
-                break;
-        }
-        return super.onOptionsItemSelected(item);
     }
 }

@@ -6,28 +6,38 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.WindowManager;
 
 import com.liuguangqiang.android.mvp.Presenter;
 import com.liuguangqiang.framework.utils.IntentUtils;
+import com.liuguangqiang.framework.utils.SystemBarTintManager;
 import com.xulee.kandota.R;
 import com.xulee.kandota.constant.MyActions;
 import com.xulee.kandota.login.LoginType;
 import com.xulee.kandota.login.SinaWeiboLogin;
 import com.xulee.kandota.login.ThirdLoginUtils;
+import com.xulee.kandota.view.TitleBar;
 
-public class BaseActivity extends FragmentActivity implements Presenter.OnUiAttachedListener {
+import butterknife.Bind;
+import butterknife.ButterKnife;
+
+public class BaseActivity extends AppCompatActivity implements Presenter.OnUiAttachedListener {
 
     private FinishAppReceiver receiver;
     private Presenter presenter;
 
+    @Bind(R.id.titlebar) TitleBar titleBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(getContentView());
+        ButterKnife.bind(this);
         presenter = setPresenter();
         showActionBarBack();
+        setTranslucentStatus();
         initReceiver();
     }
 
@@ -46,6 +56,19 @@ public class BaseActivity extends FragmentActivity implements Presenter.OnUiAtta
             unregisterReceiver(receiver);
             receiver = null;
         }
+    }
+
+    public void setTranslucentStatus() {
+//		// 透明状态栏
+		getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+//		// 透明导航栏
+//		getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+        SystemBarTintManager tintManager = new SystemBarTintManager(this);
+        // enable status bar tint
+        tintManager.setStatusBarTintEnabled(true);
+        // enable navigation bar tint
+//		tintManager.setNavigationBarTintEnabled(true);
+        tintManager.setTintResource(R.color.theme_color); // 需要的话，可以自定义系统状态栏背景
     }
 
     @Override
@@ -72,24 +95,6 @@ public class BaseActivity extends FragmentActivity implements Presenter.OnUiAtta
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                finish();
-                break;
-            default:
-                break;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    public void finish() {
-        super.finish();
-    }
-
-    @Override
     public void startActivity(Intent intent) {
         super.startActivity(intent);
     }
@@ -105,19 +110,38 @@ public class BaseActivity extends FragmentActivity implements Presenter.OnUiAtta
         startActivity(intent);
     }
 
-    private void initActionBar() {
-        if (getActionBar() != null && getActionBar().isShowing()) {
-            getActionBar().setDisplayUseLogoEnabled(false);
-            getActionBar().setDisplayShowHomeEnabled(false);
-        }
-    }
-
     /**
      * 显示ActionBar中的返回按钮。
      */
     public void showActionBarBack() {
-        if (getActionBar() != null && getActionBar().isShowing()) {
-            getActionBar().setDisplayHomeAsUpEnabled(true);
+        if (titleBar != null) {
+            titleBar.showLeft();
+            titleBar.setLeftAction(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    finish();
+                }
+            });
+        }
+    }
+
+    public void setTitle(int stringRes){
+        if(null != titleBar){
+            titleBar.setTitle(stringRes);
+        }
+    }
+
+    public void setTitle(String stringRes){
+        if(null != titleBar){
+            titleBar.setTitle(stringRes);
+        }
+    }
+
+
+    public void setTitleBarRight(int imgRes, View.OnClickListener listener){
+        titleBar = (TitleBar) findViewById(R.id.titlebar);
+        if(null != titleBar){
+            titleBar.setRightIconAndAction(imgRes, listener);
         }
     }
 
@@ -125,12 +149,21 @@ public class BaseActivity extends FragmentActivity implements Presenter.OnUiAtta
      * 隐藏ActionBar中的返回按钮。
      */
     public void hideActionBarBack() {
-        if (getActionBar() != null && getActionBar().isShowing())
-            getActionBar().setDisplayHomeAsUpEnabled(false);
+        if (titleBar != null)
+            titleBar.hideLeft();
+    }
+
+    /**
+     * 隐藏 titlebar
+     */
+    public void hideActionBar(){
+        if(titleBar != null){
+            titleBar.setVisibility(View.GONE);
+        }
     }
 
     public void setContent(Fragment fragment) {
-        addFragment(R.id.layout_content, fragment);
+        addFragment(R.id.fragment_container, fragment);
     }
 
     public void addFragment(int resid, Fragment fragment) {
@@ -172,7 +205,7 @@ public class BaseActivity extends FragmentActivity implements Presenter.OnUiAtta
     }
 
     public void replaceFragment(Fragment fragment) {
-        getSupportFragmentManager().beginTransaction().replace(android.R.id.content, fragment).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, fragment).commit();
     }
 
     public void replaceFragment(int resId, Fragment fragment) {

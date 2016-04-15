@@ -7,6 +7,7 @@ import android.net.Uri;
 
 import com.liuguangqiang.framework.utils.AppUtils;
 import com.liuguangqiang.framework.utils.ToastUtils;
+import com.loopj.android.http.RequestParams;
 import com.xulee.kandota.R;
 import com.xulee.kandota.constant.Constants;
 import com.xulee.kandota.entity.Configures;
@@ -45,8 +46,9 @@ public class AsyncCheckUpdate {
 
     public void checkUpdate() {
         if (mAct == null) return;
-        String url = ApiUtils.getVersionUrl();
-        JHttpClient.get(null, url, null, new JsonResponseHandler<Configures>(Configures.class, false) {
+        RequestParams params = AsyncUtils.getParam(ApiUtils.getVersionUrl());
+
+        JHttpClient.post(ApiUtils.URL_GET_VERSION, params, new JsonResponseHandler<Configures>(Configures.class, false) {
 
             @Override
             public void onStart() {

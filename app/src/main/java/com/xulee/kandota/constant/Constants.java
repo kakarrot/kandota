@@ -6,7 +6,7 @@ package com.xulee.kandota.constant;
 public class Constants {
 
     //app 唯一标识符
-    public static String CFLAG = "stglt";
+    public static String CFLAG = "stgltv";
 
     public static boolean DEBUG = true;
 

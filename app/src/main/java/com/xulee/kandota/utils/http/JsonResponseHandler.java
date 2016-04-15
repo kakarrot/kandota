@@ -45,6 +45,4 @@ public class JsonResponseHandler<T> extends BaseResponseHandler {
     public void onOrigin(String json) {
     }
 
-    ;
-
 }

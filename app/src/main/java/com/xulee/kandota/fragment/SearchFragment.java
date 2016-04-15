@@ -25,16 +25,8 @@ public class SearchFragment extends BaseListFragment<NewsResponse> implements Se
     private SearchUiCallback mCallback;
 
     @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        initViews();
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_base, container, false);
-        return rootView;
+    protected int getContentView() {
+        return R.layout.fragment_base;
     }
 
     @Override

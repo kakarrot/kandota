@@ -1,6 +1,7 @@
 package com.xulee.kandota.module;
 
 import com.xulee.kandota.mvp.presenter.FeedbackPresenter;
+import com.xulee.kandota.mvp.presenter.HudongPresenter;
 import com.xulee.kandota.mvp.presenter.LegalPresenter;
 import com.xulee.kandota.mvp.presenter.MainPresenter;
 import com.xulee.kandota.mvp.presenter.MoviePresenter;
@@ -17,7 +18,8 @@ import dagger.Module;
                 MainPresenter.class,
                 LegalPresenter.class,
                 FeedbackPresenter.class,
-                SettingsPresenter.class
+                SettingsPresenter.class,
+                HudongPresenter.class
         }
 )
 public class PresenterModule {

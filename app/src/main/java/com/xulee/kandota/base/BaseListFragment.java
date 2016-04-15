@@ -48,13 +48,12 @@ public class BaseListFragment<T> extends BaseFragment {
     public ProgressBar pbLoading;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_base, container, false);
-        return rootView;
+    protected int getContentView() {
+        return R.layout.fragment_base;
     }
 
-    public void initViews() {
+    @Override
+    protected void initViews() {
         mSwipeRefreshLayout = (SwipeRefreshLayout) getView().findViewById(R.id.swipe_container);
         StyleUtils.setColorSchemeResources(mSwipeRefreshLayout);
         mListView = (PageableListView) getView().findViewById(R.id.listview_pull_to_refresh);

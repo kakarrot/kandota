@@ -47,17 +47,8 @@ public class SettingFragment extends BaseFragment implements SettingsUi {
     SettingUiCallback mCallback;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.activity_setting, container, false);
-        ButterKnife.bind(this, rootView);
-        return rootView;
-    }
-
-    @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        initViews();
+    protected int getContentView() {
+        return R.layout.activity_setting;
     }
 
     @Override
@@ -70,7 +61,8 @@ public class SettingFragment extends BaseFragment implements SettingsUi {
         mCallback = settingsUiCallback;
     }
 
-    public void initViews() {
+    @Override
+    protected void initViews() {
         if (!ImageLoaderUtils.isOpen()) {
             setCheckbox(ivSaveModel, true);
             selectSaveModel = true;

@@ -59,11 +59,11 @@ public class JHttpClient {
      * @param handler 回调
      */
     public static void get(final Context context, String url, RequestParams params, final BaseResponseHandler handler) {
-        createHttpCilent();
 //        if(!NetworkUtils.isAvailable(context)){
 //            ToastUtils.show(context, R.string.error_network_unavailable_format);
 //            return;
 //        }
+        createHttpCilent();
         httpClient.get(url, params, new TextHttpResponseHandler() {
             @Override
             public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
@@ -117,7 +117,53 @@ public class JHttpClient {
 
             @Override
             public void onSuccess(int statusCode, Header[] headers, String responseString) {
-                if (handler != null) handler.onSuccess(responseString);
+                if (handler != null) {
+                    if (statusCode > 300) {
+                        handler.onFailure(statusCode, responseString);
+                    } else {
+                        handler.onSuccess(responseString);
+                    }
+                }
+            }
+
+            @Override
+            public void onStart() {
+                if (handler != null) handler.onStart();
+            }
+
+            @Override
+            public void onFinish() {
+                if (handler != null) handler.onFinish();
+            }
+        });
+    }
+
+    public static void post(final Context context, String url, RequestParams params, final BaseResponseHandler handler) {
+        createHttpCilent();
+        httpClient.post(url, params, new TextHttpResponseHandler() {
+            @Override
+            public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+                if (handler != null) {
+                    handler.onFailure(responseString);
+                    handler.onFailure(statusCode, responseString);
+                    if (context != null) {
+                        FailureUtils.handleHttpRequest(context, responseString, statusCode, throwable);
+                    }
+                }
+            }
+
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, String responseString) {
+                if (handler != null) {
+                    if (statusCode > 300) {
+                        handler.onFailure(statusCode, responseString);
+                        if (context != null) {
+                            FailureUtils.handleHttpRequest(context, responseString, statusCode, null);
+                        }
+                    } else {
+                        handler.onSuccess(responseString);
+                    }
+                }
             }
 
             @Override

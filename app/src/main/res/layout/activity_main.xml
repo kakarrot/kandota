@@ -13,6 +13,8 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+        <include layout="@layout/include_titlebar" />
+
         <RelativeLayout
             android:layout_width="fill_parent"
             android:layout_height="0dp"
@@ -35,7 +37,7 @@
             android:id="@+id/gv_menu"
             style="@style/ListSelectorBorderless"
             android:layout_width="fill_parent"
-            android:layout_height="56dp"
+            android:layout_height="50dp"
             android:numColumns="4" />
 
     </LinearLayout>

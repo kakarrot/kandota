@@ -3,9 +3,15 @@ package com.xulee.kandota.base;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import com.liuguangqiang.android.mvp.BaseUi;
 import com.liuguangqiang.android.mvp.Presenter;
+import com.xulee.kandota.R;
+
+import butterknife.ButterKnife;
 
 
 /**
@@ -17,6 +23,23 @@ public class BaseFragment extends Fragment {
 
     private Presenter presenter;
     private BaseUi baseUi;
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View view = inflater.inflate(getContentView(), container, false);
+        ButterKnife.bind(this, view);
+        initViews();
+        return view;
+    }
+
+    protected void initViews(){
+
+    }
+
+    protected int getContentView(){
+        return R.layout.fragment_base;
+    }
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
@@ -50,6 +73,12 @@ public class BaseFragment extends Fragment {
         Intent intent = new Intent(getActivity(), cls);
         intent.putExtras(extra);
         startActivity(intent);
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        ButterKnife.unbind(this);
     }
 
 }

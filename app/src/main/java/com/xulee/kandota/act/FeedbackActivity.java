@@ -1,8 +1,5 @@
 package com.xulee.kandota.act;
 
-import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.EditText;
 
 import com.liuguangqiang.android.mvp.Presenter;
@@ -14,7 +11,6 @@ import com.xulee.kandota.mvp.ui.FeedbackUiCallback;
 import com.xulee.kandota.utils.DialogUtils;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 
 public class FeedbackActivity extends BaseActivity implements FeedbackUi {
 
@@ -24,12 +20,6 @@ public class FeedbackActivity extends BaseActivity implements FeedbackUi {
     EditText etContent;
 
     private FeedbackUiCallback mCallback;
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        ButterKnife.bind(this);
-    }
 
     @Override
     public void setUiCallback(FeedbackUiCallback feedbackUiCallback) {
@@ -44,28 +34,6 @@ public class FeedbackActivity extends BaseActivity implements FeedbackUi {
     @Override
     protected int getContentView() {
         return R.layout.activity_feedback;
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        menu.add(ACTION_SEND, 0, 0, R.string.action_send)
-                .setShowAsAction(
-                        MenuItem.SHOW_AS_ACTION_ALWAYS
-                                | MenuItem.SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW
-                );
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case ACTION_SEND:
-                postFeedback();
-                break;
-            default:
-                break;
-        }
-        return super.onOptionsItemSelected(item);
     }
 
     @Override

@@ -4,8 +4,10 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
+import com.xulee.kandota.fragment.HudongFragment;
 import com.xulee.kandota.fragment.MeFragment;
 import com.xulee.kandota.fragment.NewsFragment;
+import com.xulee.kandota.fragment.WebViewFragment;
 
 
 /**
@@ -16,8 +18,8 @@ public class MainPagerAdapter extends FragmentPagerAdapter {
     public static final int NUM = 4;
 
     private NewsFragment newsFragment;
-    private NewsFragment Hudongfragment;
-    private NewsFragment ServiceFragment;
+    private HudongFragment Hudongfragment;
+    private WebViewFragment ServiceFragment;
 
     public MainPagerAdapter(FragmentManager fm) {
         super(fm);
@@ -27,19 +29,19 @@ public class MainPagerAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int arg0) {
         switch (arg0) {
             case 0:
-                if (Hudongfragment == null) {
-                    Hudongfragment = new NewsFragment();
-                }
-                return Hudongfragment;
-
-            case 1:
                 if (newsFragment == null) {
                     newsFragment = new NewsFragment();
                 }
                 return newsFragment;
+
+            case 1:
+                if (Hudongfragment == null) {
+                    Hudongfragment = new HudongFragment();
+                }
+                return Hudongfragment;
             case 2:
                 if (ServiceFragment == null) {
-                    ServiceFragment = new NewsFragment();
+                    ServiceFragment = WebViewFragment.newInstance("http://olive.strtv.cn:7337/olivei.html");
                 }
                 return ServiceFragment;
             case 3:

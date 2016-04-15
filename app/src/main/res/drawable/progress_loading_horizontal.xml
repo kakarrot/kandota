@@ -9,7 +9,7 @@
     <!-- progress -->
     <item android:id="@android:id/progress">
         <clip>
-            <color android:color="@color/green"></color>
+            <color android:color="@color/main_yellow_color"></color>
         </clip>
     </item>
     <!-- second progress -->

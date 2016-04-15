@@ -44,7 +44,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/choose_login_type"
-                        android:textColor="@color/green"
+                        android:textColor="@color/theme_color"
                         android:textSize="@dimen/font_size_big" />
 
                     <TextView

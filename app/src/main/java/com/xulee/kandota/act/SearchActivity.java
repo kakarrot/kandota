@@ -1,8 +1,7 @@
 package com.xulee.kandota.act;
 
-import android.app.ActionBar;
-import android.app.ActionBar.LayoutParams;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -41,14 +40,14 @@ public class SearchActivity extends BaseActivity {
     }
 
     private void initActionBar() {
-        ActionBar actionBar = getActionBar();
+        ActionBar actionBar = getSupportActionBar();
         if (actionBar != null && actionBar.isShowing()) {
             actionBar.setDisplayShowTitleEnabled(false);
             actionBar.setDisplayShowCustomEnabled(true);
 
             SearchViewHolder viewHolder = new SearchViewHolder();
-            LayoutParams params =
-                    new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
+            ActionBar.LayoutParams params =
+                    new ActionBar.LayoutParams(ActionBar.LayoutParams.MATCH_PARENT, ActionBar.LayoutParams.MATCH_PARENT);
             actionBar.setCustomView(viewHolder.getView(), params);
         }
     }

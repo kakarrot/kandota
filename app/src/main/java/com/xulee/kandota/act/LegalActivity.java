@@ -2,6 +2,7 @@ package com.xulee.kandota.act;
 
 import android.os.Bundle;
 
+import com.xulee.kandota.R;
 import com.xulee.kandota.base.BaseActivity;
 import com.xulee.kandota.fragment.LegalFragment;
 
@@ -12,6 +13,8 @@ public class LegalActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         replaceFragment(new LegalFragment());
+        setTitle(R.string.feedback_chooser_title);
+        showActionBarBack();
     }
 
 }

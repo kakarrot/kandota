@@ -1,22 +1,11 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <style name="AppBaseTheme" parent="@android:style/Theme.Material.Light"></style>
-
+    <style name="AppBaseTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
     <style name="AppTheme" parent="AppBaseTheme">
 
-        <item name="android:statusBarColor">@color/status_bar_bg_color</item>
-
-        <item name="android:windowBackground">@color/main_bg_color</item>
-        <item name="android:homeAsUpIndicator">@drawable/ic_action_home</item>
-        <item name="android:logo">@drawable/transparent_bg</item>
-        <item name="android:windowContentOverlay">@drawable/action_bar_overlay</item>
-        <item name="android:actionBarStyle">@style/MyActionBar</item>
-        <item name="android:actionModeBackground">@color/action_bar_bg_color</item>
-        <item name="android:actionModeStyle">@style/MyActionModeStyle</item>
-        <item name="android:actionModeCloseDrawable">@drawable/ic_action_mode_cancel</item>
-        <item name="android:actionMenuTextColor">@color/action_bar_text_color</item>
-        <item name="android:actionMenuTextAppearance">@style/MyActionBar.MenuItem</item>
-        <item name="android:actionModeCloseButtonStyle">@style/MyActionModeCloseButton</item>
 
         <!-- 允许使用transitions -->
         <!--<item name="android:windowContentTransitions">true</item>-->
