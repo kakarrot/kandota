@@ -47,8 +47,6 @@ dependencies {
     //    compile 'com.android.support:design:23.0.1'
     //    compile 'com.github.liuguangqiang.mvp:library:1.0.4'
     //        compile 'com.github.liuguangqiang.aframework:library:1.0.2'
-    //以下两依赖用于带header的viewpager使用，并支持下拉刷新功能
-    //以下两依赖为自动轮播图
     //通过Adapter
     //    compile 'com.github.tianzhijiexian:CommonAdapter:1.1.8'
     //    provided 'com.android.databinding:baseLibrary:1.0'
@@ -56,9 +54,12 @@ dependencies {
     //    compile(name: 'library_aframework-release', ext: 'aar')
     compile project(':library_aframework')
     compile project(':library_mvp')
+    compile project(':library_swipeback')
+
+    //以下两依赖用于带header的viewpager使用，并支持下拉刷新功能
+    //以下两依赖为自动轮播图
     compile 'com.android.support:appcompat-v7:23.3.0'
     compile 'com.mcxiaoke.viewpagerindicator:library:+'
-    compile 'com.nineoldandroids:library:2.4.0'
     compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
     compile 'com.loopj.android:android-async-http:1.4.9'
     compile 'com.google.code.gson:gson:+'
@@ -69,5 +70,7 @@ dependencies {
     compile 'com.culiu.android:mhvp-core:2.1.2@aar'
     compile 'com.culiu.android:mhvp-integrated-ptr:2.1.2@aar'
     compile 'com.flyco.banner:FlycoBanner_Lib:2.0.2@aar'
+    compile 'com.nineoldandroids:library:2.4.0'
     compile 'com.android.support:support-v4:23.3.0'
+    compile 'com.android.support:design:23.3.0'
 }
