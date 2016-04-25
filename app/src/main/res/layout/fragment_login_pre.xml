@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_second_bg_color"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    tools:context="com.xulee.kandota.fragment.LoginPreFragment">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@android:color/white"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/ItemLogin"
+                android:text="@string/prompt_phone" />
+
+            <EditText
+                android:id="@+id/et_username"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@null"
+                android:hint="@string/prompt_phone_hint"
+                android:inputType="phone"
+                android:textColorHint="@color/tv_title_night_color"
+                android:textSize="@dimen/font_size_middle">
+
+                <requestFocus>true</requestFocus>
+            </EditText>
+
+        </LinearLayout>
+
+        <View style="@style/Line_horizontal" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/ItemLogin"
+                android:text="@string/prompt_verify_code" />
+
+            <EditText
+                android:id="@+id/et_vcode"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@null"
+                android:hint="@string/prompt_verify_code_hint"
+                android:inputType="number"
+                android:textColorHint="@color/tv_title_night_color"
+                android:textSize="@dimen/font_size_middle" />
+
+            <ImageView
+                android:id="@+id/iv_vcode"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:background="@color/theme_color"
+                android:scaleType="fitXY"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_get_sms_code"
+        style="@style/ItemButton"
+        android:layout_margin="@dimen/activity_horizontal_margin"
+        android:enabled="false"
+        android:text="@string/str_get_sms_code" />
+
+</LinearLayout>
+

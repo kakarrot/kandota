@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- 点击背景 -->
+    <item android:state_pressed="true">
+        <shape android:shape="rectangle">
+
+            <!-- 填充的颜色 -->
+            <solid android:color="@color/btn_pressed" />
+            <!-- 圆角 -->
+            <corners android:radius="3dp" />
+            <!-- 边界 -->
+            <stroke android:width="0dip" android:color="@color/btn_pressed" />
+        </shape>
+    </item>
+
+    <item android:state_enabled="false">
+        <shape android:shape="rectangle">
+
+            <!-- 填充的颜色 -->
+            <solid android:color="@color/btn_enabled_false" />
+            <!-- 圆角 -->
+            <corners android:radius="3dp" />
+            <!-- 边界 -->
+            <stroke android:width="0dip" android:color="@color/btn_enabled_false" />
+        </shape>
+    </item>
+    <!-- 默认背景 -->
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@color/btn_normal" />
+
+            <corners android:radius="3dp" />
+
+            <stroke android:width="0dip" android:color="@color/btn_normal" />
+        </shape>
+    </item>
+
+</selector>
