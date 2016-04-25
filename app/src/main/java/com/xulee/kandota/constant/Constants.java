@@ -19,6 +19,8 @@ public class Constants {
 
     public static String OEPN_UD_ID = "";
 
+    public static String IMEI = "";
+
     /**
      * 在SharedPreferences中保存设置通用的Name。
      */

@@ -1,12 +1,8 @@
 package com.xulee.kandota.act;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.view.ViewPager;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.SubMenu;
 import android.view.View;
 import android.widget.GridView;
 import android.widget.Toast;
@@ -29,7 +25,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 import butterknife.OnItemClick;
 
 public class MainActivity extends BaseActivity implements MainUi {
@@ -63,6 +58,7 @@ public class MainActivity extends BaseActivity implements MainUi {
         initViews();
         initActionBar();
         LevelUtils.dailyLogin(getApplicationContext());
+        setSwipeBackEnable(false);
     }
 
     @Override

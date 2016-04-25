@@ -3,6 +3,7 @@ package com.xulee.kandota.utils.http;
 import android.content.Context;
 import android.util.Log;
 
+import com.liuguangqiang.framework.utils.Logs;
 import com.liuguangqiang.framework.utils.NetworkUtils;
 import com.liuguangqiang.framework.utils.ToastUtils;
 import com.loopj.android.http.AsyncHttpClient;
@@ -41,7 +42,7 @@ public class JHttpClient {
         if (LoginManager.isLogin()) {
             Auth auth = LoginManager.getAuth();
             httpClient.removeHeader(HEADER_AUTH);
-            httpClient.addHeader(HEADER_AUTH, auth.authToken);
+            httpClient.addHeader(HEADER_AUTH, auth.token);
         } else {
             httpClient.removeHeader(HEADER_AUTH);
         }
@@ -87,6 +88,7 @@ public class JHttpClient {
                         }
                     } else {
                         handler.onSuccess(responseString);
+                        Logs.i("返回数据：" + responseString);
                     }
                 }
             }
@@ -162,6 +164,7 @@ public class JHttpClient {
                         }
                     } else {
                         handler.onSuccess(responseString);
+                        Logs.i("返回数据：" + responseString);
                     }
                 }
             }

@@ -1,8 +1,8 @@
 package com.xulee.kandota.app;
 
 import android.app.Application;
-import android.content.Context;
 
+import com.liuguangqiang.framework.utils.AppUtils;
 import com.liuguangqiang.framework.utils.DeviceId;
 import com.xulee.kandota.constant.Constants;
 import com.xulee.kandota.module.AppModule;
@@ -23,7 +23,7 @@ public class MyApplication extends Application {
 
     private static MyApplication app;
 
-    public static MyApplication from(Context context) {
+    public static MyApplication from() {
         return app;
     }
 
@@ -36,6 +36,7 @@ public class MyApplication extends Application {
         ThemeUtils.initTheme(getApplicationContext());
         LoginManager.init(getApplicationContext());
         initOpenUDID();
+        initImeiCode();
         createFolder();
         createObjectsGraph();
     }
@@ -55,6 +56,10 @@ public class MyApplication extends Application {
 
     private void initOpenUDID() {
         Constants.OEPN_UD_ID = DeviceId.getInstance(this).getDeviceId();
+    }
+
+    private void initImeiCode(){
+        Constants.IMEI = AppUtils.getImeiCode(this);
     }
 
     private void createFolder() {

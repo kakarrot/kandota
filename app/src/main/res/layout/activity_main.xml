@@ -1,45 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/layout_main_container"
+    android:id="@+id/layout_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/main_bg_color"
-    tools:context=".act.MainActivity">
+    tools:context=".act.MainActivity"
+    android:orientation="vertical">
 
-    <LinearLayout
+    <include layout="@layout/include_titlebar" />
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <com.xulee.kandota.ui.SlowViewPager
+            android:id="@+id/viewpager_main"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent" />
+
+        <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/bottom_menu_shadow"
+            android:contentDescription="@string/str_empty" />
+    </RelativeLayout>
+
+    <GridView
+        android:id="@+id/gv_menu"
+        style="@style/ListSelectorBorderless"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
-        <include layout="@layout/include_titlebar" />
-
-        <RelativeLayout
-            android:layout_width="fill_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1">
-
-            <com.xulee.kandota.ui.SlowViewPager
-                android:id="@+id/viewpager_main"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent" />
-
-            <ImageView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:background="@drawable/bottom_menu_shadow"
-                android:contentDescription="@string/str_empty" />
-        </RelativeLayout>
-
-        <GridView
-            android:id="@+id/gv_menu"
-            style="@style/ListSelectorBorderless"
-            android:layout_width="fill_parent"
-            android:layout_height="50dp"
-            android:numColumns="4" />
-
-    </LinearLayout>
-</RelativeLayout>
-
+        android:layout_height="50dp"
+        android:background="@color/main_bg_color"
+        android:numColumns="4" />
+</LinearLayout>

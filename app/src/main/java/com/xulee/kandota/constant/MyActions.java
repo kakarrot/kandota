@@ -10,6 +10,6 @@ public class MyActions {
     /**
      * Update the data of bookshelf after login in or logout.
      */
-    public static final String UPDATE_BOOK_SHELF = "com.qiwenge.android.UPDATE_BOOK_SHELF";
+    public static final String UPDATE_USER_STATUS = "com.xulee.kandota.UPDATE_USER_STATUS";
 
 }

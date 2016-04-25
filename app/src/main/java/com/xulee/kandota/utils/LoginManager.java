@@ -8,7 +8,7 @@ import com.liuguangqiang.framework.utils.PreferencesUtils;
 import com.liuguangqiang.framework.utils.StringUtils;
 import com.xulee.kandota.constant.MyActions;
 import com.xulee.kandota.entity.Auth;
-import com.xulee.kandota.entity.User;
+import com.xulee.kandota.entity.UserResponse;
 
 /**
  * Created by Eric on 14/11/22.
@@ -21,7 +21,7 @@ public class LoginManager {
 
     private static final String KEY_USER = "user";
 
-    private static User mUser;
+    private static UserResponse.User mUser;
 
     private static Auth mAuth;
 
@@ -37,7 +37,7 @@ public class LoginManager {
         isLogout = true;
         saveUser(context, null);
         saveAuth(context, null);
-        IntentUtils.sendBroadcast(context, MyActions.UPDATE_BOOK_SHELF);
+        IntentUtils.sendBroadcast(context, MyActions.UPDATE_USER_STATUS);
     }
 
     public static void init(Context context) {
@@ -66,35 +66,34 @@ public class LoginManager {
         return auth;
     }
 
-    public static void saveUser(Context context, User user) {
+    public static void saveUser(Context context, UserResponse.User user) {
         if (user != null) {
             mUser = user;
             Gson gson = new Gson();
             String json = gson.toJson(user);
             PreferencesUtils.putString(context, LOGIN, KEY_USER, json);
-            IntentUtils.sendBroadcast(context, MyActions.UPDATE_BOOK_SHELF);
+            IntentUtils.sendBroadcast(context, MyActions.UPDATE_USER_STATUS);
         } else {
             PreferencesUtils.putString(context, LOGIN, KEY_USER, "");
         }
     }
 
-    public static User getUser(Context context) {
-        User user = null;
+    public static UserResponse.User getUser(Context context) {
+        UserResponse.User user = null;
         String userJson = PreferencesUtils.getString(context, LOGIN, KEY_USER);
         if (!StringUtils.isEmptyOrNull(userJson)) {
             Gson gson = new Gson();
-            user = gson.fromJson(userJson, User.class);
+            user = gson.fromJson(userJson, UserResponse.User.class);
         }
         return user;
     }
 
-    public static User getUser() {
+    public static UserResponse.User getUser() {
         return mUser;
     }
 
     public static Auth getAuth() {
         return mAuth;
     }
-
 
 }

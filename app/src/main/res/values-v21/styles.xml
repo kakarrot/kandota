@@ -3,6 +3,9 @@
     <style name="AppBaseTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowTranslucentNavigation">false</item>
+        <item name="android:windowTranslucentStatus">true</item>
     </style>
     <style name="AppTheme" parent="AppBaseTheme">
 
@@ -26,6 +29,14 @@
     <!--<item name="ptrHeaderTextAppearance">@style/ptrHeaderTextStyle</item>-->
     <!--<item name="android:listSelector">?android:attr/selectableItemBackground</item>-->
     <!--</style>-->
+
+    <style name="SplashTheme" parent="AppTheme.NoActionBar">
+        <item name="android:windowBackground">@drawable/splash_bg</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
 
     <style name="ListSelector">
         <item name="android:listSelector">?android:attr/selectableItemBackground</item>

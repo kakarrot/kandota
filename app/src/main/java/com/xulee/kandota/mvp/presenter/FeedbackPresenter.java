@@ -39,7 +39,7 @@ public class FeedbackPresenter extends Presenter<FeedbackUi, FeedbackUiCallback>
 
     public FeedbackPresenter(Context context, FeedbackUi ui) {
         super(ui);
-        MyApplication.from(context).inject(this);
+        MyApplication.from().inject(this);
         mContext = context;
     }
 

@@ -13,24 +13,21 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.xulee.kandota.R;
 import com.xulee.kandota.act.FeedbackActivity;
 import com.xulee.kandota.act.SettingActivity;
+import com.xulee.kandota.async.AsyncUtils;
 import com.xulee.kandota.base.BaseFragment;
-import com.xulee.kandota.entity.User;
-import com.xulee.kandota.entity.UserLevel;
-import com.xulee.kandota.listeners.LoginListener;
-import com.xulee.kandota.ui.dialogs.LoginDialog;
+import com.xulee.kandota.entity.Auth;
+import com.xulee.kandota.entity.UserResponse;
 import com.xulee.kandota.utils.ImageLoaderUtils;
 import com.xulee.kandota.utils.LoginManager;
+import com.xulee.kandota.utils.SkipUtils;
 import com.xulee.kandota.utils.http.JHttpClient;
 import com.xulee.kandota.utils.http.JsonResponseHandler;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 
 public class MeFragment extends BaseFragment {
-
-    private final static String LEVEL_FORMAT = "LV.%s (%s/%s)";
 
     @Bind(R.id.iv_avatar)
     ImageView ivAvatar;
@@ -38,8 +35,6 @@ public class MeFragment extends BaseFragment {
     TextView tvUserName;
     @Bind(R.id.tv_level)
     TextView tvLevel;
-
-    private LoginDialog loginDialog;
 
     @Override
     protected int getContentView() {
@@ -50,7 +45,7 @@ public class MeFragment extends BaseFragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         if (LoginManager.isLogin()) {
-            getUser(LoginManager.getUser().getId());
+            getUser(String.valueOf(LoginManager.getUser().uid));
         }
     }
 
@@ -64,8 +59,8 @@ public class MeFragment extends BaseFragment {
         showUser();
     }
 
-    @OnClick({R.id.tv_set, R.id.tv_feed_back, R.id.tv_rating, R.id.layout_user,
-            R.id.tv_download, R.id.tv_caching})
+    @OnClick({R.id.tv_set, R.id.tv_feed_back, R.id.tv_user_info, R.id.layout_user,
+            R.id.tv_download, R.id.tv_exchange})
     void onViewClick(View v) {
         switch (v.getId()) {
             case R.id.tv_set:
@@ -74,12 +69,12 @@ public class MeFragment extends BaseFragment {
             case R.id.tv_feed_back:
                 startActivity(FeedbackActivity.class);
                 break;
-            case R.id.tv_rating:
+            case R.id.tv_user_info:
                 skipToMarket();
                 break;
             case R.id.layout_user:
                 if (!LoginManager.isLogin())
-                    showLoginDialog();
+                    SkipUtils.skipToLogin(getActivity());
                 break;
         }
     }
@@ -92,62 +87,46 @@ public class MeFragment extends BaseFragment {
         }
     }
 
-    private void showLoginDialog() {
-        if (loginDialog == null) {
-            loginDialog = new LoginDialog(getActivity());
-            loginDialog.setLoginListener(new LoginListener() {
-                @Override
-                public void onSuccess() {
-                    showUser(LoginManager.getUser());
-                }
-            });
-        }
-        loginDialog.show();
-    }
-
     private void showUser() {
         if (LoginManager.isLogin()) {
             showUser(LoginManager.getUser());
         }
     }
 
-    private void showUser(User user) {
+    private void showUser(UserResponse.User user) {
         if (user != null) {
-            tvUserName.setText(user.username);
+            tvUserName.setText(user.nickname);
             DisplayImageOptions options = ImageLoaderUtils.createOptions(R.drawable.ic_default_avatar,
                     DisplayUtils.dip2px(getActivity(), 70));
-            ImageLoader.getInstance().displayImage(user.avatar, ivAvatar, options);
-            UserLevel level = user.level;
-            tvLevel.setText(String.format(LEVEL_FORMAT, level.rank, level.exp, level.next));
+            ImageLoader.getInstance().displayImage(user.avator, ivAvatar, options);
+            String level = user.credits;
+            tvLevel.setText(String.format(getString(R.string.str_credit), level));
             tvLevel.setVisibility(View.VISIBLE);
         }
     }
 
     private void clearUser() {
-        tvUserName.setText(R.string.choose_login_type);
+        tvUserName.setText(R.string.str_login_tips);
         tvLevel.setText(R.string.login_desc);
         ivAvatar.setImageResource(R.drawable.ic_default_avatar);
     }
 
-    private void getUser(String userId) {
-        String url = "";
-        JHttpClient.get(getActivity(), url, null, new JsonResponseHandler<User>(User.class, false) {
-
+    private void getUser(String uid) {
+        AsyncUtils.getUser(getActivity(), uid, new JsonResponseHandler<UserResponse>(UserResponse.class) {
             @Override
-            public void onOrigin(String json) {
-            }
-
-            @Override
-            public void onSuccess(User result) {
-                if (isAdded()) {
-                    LoginManager.saveUser(getActivity(), result);
-                    showUser(result);
+            public void onSuccess(UserResponse result) {
+                super.onSuccess(result);
+                if(result.status.equals("ok")){
+                    LoginManager.saveUser(getActivity(), result.data);
+                    Auth auth = new Auth();
+                    auth.uid = String.valueOf(result.data.uid);
+                    auth.token = result.data.token;
+                    LoginManager.saveAuth(getActivity(), auth);
+                    showUser(result.data);
                 }
-            }
-
-            @Override
-            public void onFinish() {
-
+                if(null != result.message){
+                    ToastUtils.show(getActivity(), result.message);
+                }
             }
         });
     }

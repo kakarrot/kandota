@@ -31,5 +31,6 @@
         android:layout_height="@dimen/action_btn_height"
         android:padding="@dimen/default_item_padding"
         android:src="@drawable/ic_action_more"
-        android:background="@drawable/action_bar_item_bg"/>
+        android:background="@drawable/action_bar_item_bg"
+        android:visibility="invisible"/>
 </LinearLayout>

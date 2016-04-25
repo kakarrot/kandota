@@ -46,7 +46,7 @@ public class AsyncCheckUpdate {
 
     public void checkUpdate() {
         if (mAct == null) return;
-        RequestParams params = AsyncUtils.getParam(ApiUtils.getVersionUrl());
+        RequestParams params = AsyncUtils.getParam(ApiUtils.getVersionParams());
 
         JHttpClient.post(ApiUtils.URL_GET_VERSION, params, new JsonResponseHandler<Configures>(Configures.class, false) {
 

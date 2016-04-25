@@ -130,6 +130,6 @@ public class TitleBar extends LinearLayout{
      * 显示右图标
      */
     public void showRight(){
-        iv_right.setVisibility(View.INVISIBLE);
+        iv_right.setVisibility(View.VISIBLE);
     }
 }

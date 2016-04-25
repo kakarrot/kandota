@@ -39,7 +39,7 @@ public class MainPresenter extends Presenter<MainUi, MainUiCallback> {
     public MainPresenter(Activity context, MainUi ui) {
         super(ui);
         mContext = context;
-        MyApplication.from(context).inject(this);
+        MyApplication.from().inject(this);
         mMainModel.checkUpdate(mContext);
     }
 

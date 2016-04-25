@@ -1,12 +1,13 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/main_second_bg_color">
+    android:scrollbars="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="26dp"
+        android:layout_height="wrap_content"
+        android:paddingTop="16dp"
+        android:background="@color/main_second_bg_color"
         android:orientation="vertical">
 
         <LinearLayout
@@ -43,7 +44,7 @@
                         android:id="@+id/tv_username"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/choose_login_type"
+                        android:text="@string/str_login_tips"
                         android:textColor="@color/theme_color"
                         android:textSize="@dimen/font_size_big" />
 
@@ -71,14 +72,23 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/tv_caching"
+                android:id="@+id/tv_sign"
                 style="@style/ItemMe"
-                android:text="@string/set_caching" />
+                android:text="@string/set_sign" />
+
+            <View style="@style/Line_horizontal" />
+
+            <TextView
+                android:id="@+id/tv_exchange"
+                style="@style/ItemMe"
+                android:text="@string/set_exchange" />
+
+            <View style="@style/Line_horizontal" />
+
             <TextView
                 android:id="@+id/tv_download"
                 style="@style/ItemMe"
-                android:text="@string/set_download" />
-
+                android:text="@string/set_message" />
 
         </LinearLayout>
 
@@ -90,21 +100,30 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/tv_rating"
+                android:id="@+id/tv_user_info"
                 style="@style/ItemMe"
-                android:text="@string/set_rating" />
+                android:text="@string/set_user_info" />
+
+            <View style="@style/Line_horizontal" />
+
+            <TextView
+                android:id="@+id/tv_my_friends"
+                style="@style/ItemMe"
+                android:text="@string/set_my_friend" />
+
+            <View style="@style/Line_horizontal" />
 
             <TextView
                 android:id="@+id/tv_feed_back"
                 style="@style/ItemMe"
-                android:text="@string/action_feedback" />
+                android:text="@string/set_recommend" />
 
         </LinearLayout>
-
 
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
             android:layout_marginTop="16dp"
             android:background="@android:color/white">
 
@@ -113,8 +132,6 @@
                 style="@style/ItemMe"
                 android:text="@string/str_set" />
         </LinearLayout>
-
-
     </LinearLayout>
 
 </ScrollView>

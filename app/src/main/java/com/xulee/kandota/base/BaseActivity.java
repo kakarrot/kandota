@@ -6,8 +6,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
-import android.view.MenuItem;
+import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.view.WindowManager;
 
@@ -23,13 +22,18 @@ import com.xulee.kandota.view.TitleBar;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import me.imid.swipebacklayout.lib.app.SwipeBackActivity;
 
-public class BaseActivity extends AppCompatActivity implements Presenter.OnUiAttachedListener {
+/**
+ * Activity 父类，子类必须在布局中定义TitleBar相同的id ，如果不需要，可以隐藏显示
+ */
+public class BaseActivity extends SwipeBackActivity implements Presenter.OnUiAttachedListener {
 
     private FinishAppReceiver receiver;
     private Presenter presenter;
 
-    @Bind(R.id.titlebar) TitleBar titleBar;
+    private TitleBar titleBar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,8 +41,13 @@ public class BaseActivity extends AppCompatActivity implements Presenter.OnUiAtt
         ButterKnife.bind(this);
         presenter = setPresenter();
         showActionBarBack();
-        setTranslucentStatus();
         initReceiver();
+    }
+
+    @Override
+    protected void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        setTranslucentStatus();
     }
 
     protected int getContentView() {
@@ -60,14 +69,14 @@ public class BaseActivity extends AppCompatActivity implements Presenter.OnUiAtt
 
     public void setTranslucentStatus() {
 //		// 透明状态栏
-		getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
 //		// 透明导航栏
 //		getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
         SystemBarTintManager tintManager = new SystemBarTintManager(this);
         // enable status bar tint
         tintManager.setStatusBarTintEnabled(true);
         // enable navigation bar tint
-//		tintManager.setNavigationBarTintEnabled(true);
+//		tintManager.setNavigationBarTintEnabled(false);
         tintManager.setTintResource(R.color.theme_color); // 需要的话，可以自定义系统状态栏背景
     }
 
@@ -102,18 +111,21 @@ public class BaseActivity extends AppCompatActivity implements Presenter.OnUiAtt
     public void startActivity(Class<?> cls) {
         Intent intent = new Intent(this, cls);
         startActivity(intent);
+//        overridePendingTransition(R.anim.push_right_in, R.anim.push_left_out);
     }
 
     public void startActivity(Class<?> cls, Bundle extra) {
         Intent intent = new Intent(this, cls);
         intent.putExtras(extra);
         startActivity(intent);
+//        overridePendingTransition(R.anim.push_right_in, R.anim.push_left_out);
     }
 
     /**
      * 显示ActionBar中的返回按钮。
      */
     public void showActionBarBack() {
+        titleBar = (TitleBar) findViewById(R.id.titlebar);
         if (titleBar != null) {
             titleBar.showLeft();
             titleBar.setLeftAction(new View.OnClickListener() {
@@ -125,23 +137,26 @@ public class BaseActivity extends AppCompatActivity implements Presenter.OnUiAtt
         }
     }
 
-    public void setTitle(int stringRes){
-        if(null != titleBar){
-            titleBar.setTitle(stringRes);
-        }
-    }
-
-    public void setTitle(String stringRes){
-        if(null != titleBar){
-            titleBar.setTitle(stringRes);
-        }
-    }
-
-
-    public void setTitleBarRight(int imgRes, View.OnClickListener listener){
+    public void setTitle(int stringRes) {
         titleBar = (TitleBar) findViewById(R.id.titlebar);
-        if(null != titleBar){
+        if (null != titleBar) {
+            titleBar.setTitle(stringRes);
+        }
+    }
+
+    public void setTitle(String stringRes) {
+        titleBar = (TitleBar) findViewById(R.id.titlebar);
+        if (null != titleBar) {
+            titleBar.setTitle(stringRes);
+        }
+    }
+
+
+    public void setTitleBarRight(int imgRes, View.OnClickListener listener) {
+        titleBar = (TitleBar) findViewById(R.id.titlebar);
+        if (null != titleBar) {
             titleBar.setRightIconAndAction(imgRes, listener);
+            titleBar.showRight();
         }
     }
 
@@ -149,6 +164,7 @@ public class BaseActivity extends AppCompatActivity implements Presenter.OnUiAtt
      * 隐藏ActionBar中的返回按钮。
      */
     public void hideActionBarBack() {
+        titleBar = (TitleBar) findViewById(R.id.titlebar);
         if (titleBar != null)
             titleBar.hideLeft();
     }
@@ -156,8 +172,9 @@ public class BaseActivity extends AppCompatActivity implements Presenter.OnUiAtt
     /**
      * 隐藏 titlebar
      */
-    public void hideActionBar(){
-        if(titleBar != null){
+    public void hideActionBar() {
+        titleBar = (TitleBar) findViewById(R.id.titlebar);
+        if (titleBar != null) {
             titleBar.setVisibility(View.GONE);
         }
     }
@@ -205,10 +222,13 @@ public class BaseActivity extends AppCompatActivity implements Presenter.OnUiAtt
     }
 
     public void replaceFragment(Fragment fragment) {
+        getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.push_right_in, R.anim.push_left_out);
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, fragment).commit();
+
     }
 
     public void replaceFragment(int resId, Fragment fragment) {
+        getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.push_right_in, R.anim.push_left_out);
         getSupportFragmentManager().beginTransaction().replace(resId, fragment).commit();
     }
 

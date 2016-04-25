@@ -37,7 +37,10 @@
     <color name="tv_content_color_normal">#333333</color>
     <color name="tv_desc_color">#838383</color>
 
-    <color name="btn_gray">#404040</color>
+    <color name="btn_gray">#999999</color>
+    <color name="btn_normal">#389c76</color>
+    <color name="btn_pressed">#20389c76</color>
+    <color name="btn_enabled_false">#aaaaaa</color>
 
     <color name="gray_light">#aaaaaa</color>
     <color name="gray_middle">#666666</color>

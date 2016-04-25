@@ -8,10 +8,10 @@ import com.google.gson.annotations.SerializedName;
  */
 public class Auth {
 
-    @SerializedName("user_id")
-    public String userId;
+    @SerializedName("uid")
+    public String uid;
 
-    @SerializedName("auth_token")
-    public String authToken;
+    @SerializedName("token")
+    public String token;
 
 }

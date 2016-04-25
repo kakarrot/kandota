@@ -17,8 +17,8 @@ import android.widget.ProgressBar;
 
 import com.xulee.kandota.R;
 import com.xulee.kandota.act.ServiceActivity;
-import com.xulee.kandota.app.MyApplication;
 import com.xulee.kandota.base.BaseFragment;
+import com.xulee.kandota.view.ProgressWebView;
 
 import butterknife.Bind;
 
@@ -32,10 +32,7 @@ public class WebViewFragment extends BaseFragment {
     @Bind(R.id.layout_container)
     FrameLayout webViewContainer;
 
-    @Bind(R.id.pb_loading)
-    ProgressBar pbLoading;
-
-    private WebView webView;
+    private ProgressWebView webView;
 
     private boolean isOnPause = false;
 
@@ -85,13 +82,13 @@ public class WebViewFragment extends BaseFragment {
     @Override
     public void initViews() {
 
-        if(null == getActivity()){
+        if (null == getActivity()) {
             return;
         }
 
         hardwareAccelerate();
 
-        webView = new WebView(getActivity().getApplicationContext());
+        webView = new ProgressWebView(getActivity().getApplicationContext());
 
         webView.clearCache(true);
         webViewContainer.addView(webView, 0);
@@ -135,18 +132,6 @@ public class WebViewFragment extends BaseFragment {
             }
         });
 
-        webView.setWebChromeClient(new WebChromeClient() {
-            @Override
-            public void onProgressChanged(WebView view, int newProgress) {
-                pbLoading.setProgress(newProgress);
-                if (newProgress > 80) {
-                    pbLoading.setVisibility(View.GONE);
-                } else {
-                    pbLoading.setVisibility(View.VISIBLE);
-                }
-                super.onProgressChanged(view, newProgress);
-            }
-        });
         mUrl = getArguments().getString(EXTRA_URL);
         webView.loadUrl(mUrl);
     }
@@ -200,6 +185,8 @@ public class WebViewFragment extends BaseFragment {
         super.onDestroy();
         if (webView != null) {
             webView.getSettings().setBuiltInZoomControls(true);
+            webView.stopLoading();
+            webView.removeAllViews();
             webView.setVisibility(View.GONE);
             long delayTime = ViewConfiguration.getZoomControlsTimeout();
             new Handler().postDelayed(new Runnable() {
@@ -210,7 +197,6 @@ public class WebViewFragment extends BaseFragment {
                     webView = null;
                 }
             }, delayTime);
-
         }
     }
 

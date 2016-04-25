@@ -220,4 +220,5 @@ public class MyDialog {
     public View getView(Activity context, int layoutResId) {
         return LayoutInflater.from(context).inflate(layoutResId, null);
     }
+
 }

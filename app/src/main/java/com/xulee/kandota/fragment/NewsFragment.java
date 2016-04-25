@@ -156,6 +156,7 @@ public class NewsFragment extends BaseFragment implements NewsRefreshListener {
             BannerItem item = new BannerItem();
             item.imgUrl = recommendNews.img;
             item.title = recommendNews.title;
+            item.url = recommendNews.link_content;
             list.add(item);
         }
         banner.setSource(list);

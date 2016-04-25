@@ -1,9 +1,11 @@
 package com.xulee.kandota.fragment;
 
+import android.widget.AbsListView;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import com.flyco.banner.widget.Banner.base.BaseBanner;
 import com.liuguangqiang.android.mvp.Presenter;
 import com.xulee.kandota.R;
 import com.xulee.kandota.adapter.base.BaseAdapterHelper;
@@ -21,6 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
+import butterknife.OnItemClick;
 
 
 public class HudongFragment extends BaseFragment implements HudongUi {
@@ -33,8 +36,10 @@ public class HudongFragment extends BaseFragment implements HudongUi {
 
     private HudongUiCallback callback;
 
-    private ArrayList<BannerItem> bannerList;
     private QuickAdapter adapter;
+
+    private ArrayList<BannerItem> bannerList;
+    private List<HudongResponse.ThemeEntity> themeEntityList;
 
     @Override
     protected int getContentView() {
@@ -43,7 +48,6 @@ public class HudongFragment extends BaseFragment implements HudongUi {
 
     @Override
     public void initViews() {
-        bannerList = new ArrayList<>();
         adapter = new QuickAdapter<HudongResponse.ThemeEntity>(getActivity(), R.layout.item_hudong_theme) {
             @Override
             protected void convert(BaseAdapterHelper helper, HudongResponse.ThemeEntity item) {
@@ -51,7 +55,7 @@ public class HudongFragment extends BaseFragment implements HudongUi {
                 int itemHeight = (int) (itemWidth * 166 * 1.0f / 360);
                 ImageView iv = helper.getView(R.id.iv_hudong_theme);
                 iv.setScaleType(ImageView.ScaleType.CENTER_CROP);
-                iv.setLayoutParams(new LinearLayout.LayoutParams(itemWidth, itemHeight));
+                iv.setLayoutParams(new AbsListView.LayoutParams(itemWidth, itemHeight));
                 helper.setImageUrl(R.id.iv_hudong_theme, item.img);
             }
         };
@@ -68,32 +72,26 @@ public class HudongFragment extends BaseFragment implements HudongUi {
         return new HudongPresenter(getActivity(), this);
     }
 
-    private boolean hasInit = false;
-
-    /**
-     * 只有在fragment 可见时加载数据，而且不重复加载数据
-     */
     @Override
-    public void setUserVisibleHint(boolean isVisibleToUser) {
-        super.setUserVisibleHint(isVisibleToUser);
-        if (getUserVisibleHint() && !hasInit) {
-            hasInit = true;
-            callback.getHudong();
-        } else {
-
+    public void showBanner(final List<HudongResponse.DataEntity> dataEntityList) {
+        if(null == bannerList){
+            bannerList = new ArrayList<>();
         }
-    }
-
-    @Override
-    public void showBanner(List<HudongResponse.DataEntity> dataEntityList) {
         bannerList.clear();
         for (HudongResponse.DataEntity dataEntity : dataEntityList) {
             BannerItem item = new BannerItem();
             item.imgUrl = dataEntity.img;
             item.title = dataEntity.title;
+            item.url = dataEntity.link_content;
             bannerList.add(item);
         }
         banner.setSource(bannerList);
+        banner.setOnItemClickL(new BaseBanner.OnItemClickL() {
+            @Override
+            public void onItemClick(int position) {
+                callback.onBannerItemClick(dataEntityList.get(position));
+            }
+        });
         if (bannerList.size() > 0) {
             banner.startScroll();
         }
@@ -101,9 +99,20 @@ public class HudongFragment extends BaseFragment implements HudongUi {
 
     @Override
     public void showThemeList(List<HudongResponse.ThemeEntity> themeEntities) {
+        if (null == themeEntityList) {
+            themeEntityList = new ArrayList<>();
+        }
+        themeEntityList.clear();
+        themeEntityList.addAll(themeEntities);
         adapter.clear();
         adapter.addAll(themeEntities);
         adapter.notifyDataSetChanged();
+    }
+
+
+    @OnItemClick(R.id.gv_hudong)
+    void onThemeItemClick(int position) {
+        callback.onThemeItemClick(themeEntityList.get(position));
     }
 
     @Override

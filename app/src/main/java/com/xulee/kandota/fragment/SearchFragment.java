@@ -1,24 +1,19 @@
 package com.xulee.kandota.fragment;
 
-import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 
 import com.liuguangqiang.android.mvp.Presenter;
 import com.xulee.kandota.R;
 import com.xulee.kandota.base.BaseListFragment;
 import com.xulee.kandota.entity.NewsResponse;
-import com.xulee.kandota.mvp.presenter.SearchPresenter;
 import com.xulee.kandota.mvp.ui.SearchUi;
 import com.xulee.kandota.mvp.ui.SearchUiCallback;
 
 /**
  * Created by LX on 2016/1/28.
  */
-public class SearchFragment extends BaseListFragment<NewsResponse> implements SearchUi
-{
+public class SearchFragment extends BaseListFragment<NewsResponse> implements SearchUi {
 
     private String keyword;
 
@@ -34,10 +29,6 @@ public class SearchFragment extends BaseListFragment<NewsResponse> implements Se
         mCallback = searchUiCallback;
     }
 
-    @Override
-    public Presenter setPresenter() {
-        return new SearchPresenter(getActivity(), this);
-    }
 
     @Override
     public void initViews() {

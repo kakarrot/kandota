@@ -21,7 +21,7 @@ public class LegalPresenter extends Presenter<LegalUi, LegalUiCallback> {
 
     public LegalPresenter(Context context, LegalUi ui) {
         super(ui);
-        MyApplication.from(context).inject(this);
+        MyApplication.from().inject(this);
     }
 
     @Override

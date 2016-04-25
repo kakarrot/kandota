@@ -34,6 +34,7 @@ public class SplashActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
         patchAd();
+        setSwipeBackEnable(false);
     }
 
     private void patchAd() {

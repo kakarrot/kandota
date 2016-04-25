@@ -33,6 +33,7 @@
     <dimen name="reader_text_size">16sp</dimen>
     <dimen name="default_line_space">10dp</dimen>
     <dimen name="dialog_progressbar_size">40dp</dimen>
+    <dimen name="line_height">0.8dp</dimen>
 
     <!-- Item -->
     <dimen name="item_cover_height">70dp</dimen>

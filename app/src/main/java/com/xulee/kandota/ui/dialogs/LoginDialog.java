@@ -10,8 +10,8 @@ import com.loopj.android.http.RequestParams;
 import com.xulee.kandota.R;
 import com.xulee.kandota.constant.Constants;
 import com.xulee.kandota.entity.Auth;
-import com.xulee.kandota.entity.User;
-import com.xulee.kandota.listeners.LoginListener;
+import com.xulee.kandota.entity.UserResponse;
+import com.xulee.kandota.listeners.LoginPreListener;
 import com.xulee.kandota.login.AuthListener;
 import com.xulee.kandota.login.AuthSuccess;
 import com.xulee.kandota.login.LoginType;
@@ -31,9 +31,9 @@ public class LoginDialog implements AuthListener {
 
     private Activity act;
 
-    private LoginListener loginListener;
+    private LoginPreListener loginListener;
 
-    public void setLoginListener(LoginListener l) {
+    public void setLoginListener(LoginPreListener l) {
         loginListener = l;
     }
 
@@ -152,7 +152,7 @@ public class LoginDialog implements AuthListener {
 
     private void getUser(String userId) {
         String url = "";
-        JHttpClient.get(act, url, null, new JsonResponseHandler<User>(User.class, false) {
+        JHttpClient.get(act, url, null, new JsonResponseHandler<UserResponse>(UserResponse.class, false) {
 
             @Override
             public void onOrigin(String json) {
@@ -160,8 +160,8 @@ public class LoginDialog implements AuthListener {
             }
 
             @Override
-            public void onSuccess(User result) {
-                LoginManager.saveUser(act, result);
+            public void onSuccess(UserResponse result) {
+                LoginManager.saveUser(act, result.data);
                 Message msg = mHandler.obtainMessage();
                 msg.what = 1;
                 msg.sendToTarget();
@@ -184,7 +184,7 @@ public class LoginDialog implements AuthListener {
                     break;
                 case 1:
                     if (loginListener != null) {
-                        loginListener.onSuccess();
+                        loginListener.onNext("", "");
                     }
                     break;
             }
@@ -192,6 +192,4 @@ public class LoginDialog implements AuthListener {
             return false;
         }
     });
-
-
 }

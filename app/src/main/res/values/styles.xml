@@ -35,7 +35,9 @@
 
     <style name="SplashTheme" parent="AppTheme.NoActionBar">
         <item name="android:windowBackground">@drawable/splash_bg</item>
-        <item name="android:windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowContentOverlay">@null</item>
     </style>
 
     <style name="SwipTheme" parent="AppTheme">
@@ -144,14 +146,43 @@
     <style name="ItemMe" parent="ItemBackaground">
         <item name="android:textSize">@dimen/font_size_middle</item>
         <item name="android:textColor">@color/tv_title_color</item>
-        <item name="android:layout_width">fill_parent</item>
-        <item name="android:layout_height">56dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">50dp</item>
         <item name="android:singleLine">true</item>
         <item name="android:gravity">center_vertical</item>
         <item name="android:paddingLeft">16dp</item>
         <item name="android:paddingRight">16dp</item>
     </style>
 
+    <style name="ItemLogin" parent="ItemBackaground">
+        <item name="android:textSize">@dimen/font_size_middle</item>
+        <item name="android:textColor">@color/tv_title_color</item>
+        <item name="android:layout_width">80dp</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:gravity">center_vertical|right</item>
+        <item name="android:paddingLeft">16dp</item>
+        <item name="android:paddingRight">16dp</item>
+    </style>
+
+    <style name="ItemButton" parent="ItemThemeBackaground">
+        <item name="android:textSize">@dimen/font_size_middle</item>
+        <item name="android:textColor">@color/action_bar_text_color</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:gravity">center</item>
+        <item name="android:paddingLeft">16dp</item>
+        <item name="android:paddingRight">16dp</item>
+    </style>
+
+    <style name="Line_horizontal">
+        <item name="android:layout_marginLeft">@dimen/activity_horizontal_margin</item>
+        <item name="android:layout_marginRight">@dimen/activity_horizontal_margin</item>
+        <item name="android:background">@color/main_second_bg_color</item>
+        <item name="android:layout_height">@dimen/line_height</item>
+        <item name="android:layout_width">match_parent</item>
+    </style>
     <style name="SetItem_Title">
         <item name="android:textSize">@dimen/font_size_middle</item>
         <item name="android:textColor">@color/tv_title_color</item>
@@ -225,6 +256,10 @@
         <item name="android:background">@drawable/item_common_bg</item>
     </style>
 
+    <style name="ItemThemeBackaground">
+        <item name="android:background">@drawable/btn_theme_stroke</item>
+    </style>
+
     <style name="ItemBackagroundBorderless">
         <item name="android:background">@drawable/item_common_bg</item>
     </style>
@@ -239,7 +274,7 @@
         <item name="android:backgroundDimEnabled">true</item>
     </style>
 
-    <style name="mProgress_horizontal">
+    <style name="mProgress_horizontal" parent="@android:style/Widget.ProgressBar.Horizontal">
         <item name="android:indeterminateOnly">false</item>
         <item name="android:progressDrawable">@drawable/progress_loading_horizontal</item><!-- progress_horizontal -->
         <item name="android:indeterminateDrawable">@android:drawable/progress_indeterminate_horizontal</item>
