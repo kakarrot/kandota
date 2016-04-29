@@ -6,6 +6,8 @@ import com.xulee.kandota.mvp.presenter.LegalPresenter;
 import com.xulee.kandota.mvp.presenter.LoginPrePresenter;
 import com.xulee.kandota.mvp.presenter.LoginPresenter;
 import com.xulee.kandota.mvp.presenter.MainPresenter;
+import com.xulee.kandota.mvp.presenter.MePresenter;
+import com.xulee.kandota.mvp.presenter.RegisterPresenter;
 import com.xulee.kandota.mvp.presenter.SettingsPresenter;
 import com.xulee.kandota.mvp.presenter.ShakePresenter;
 
@@ -23,7 +25,9 @@ import dagger.Module;
                 HudongPresenter.class,
                 ShakePresenter.class,
                 LoginPrePresenter.class,
-                LoginPresenter.class
+                LoginPresenter.class,
+                RegisterPresenter.class,
+                MePresenter.class
         }
 )
 public class PresenterModule {

@@ -104,6 +104,7 @@
 
         <activity android:name=".act.ShakeActivity" />
         <activity android:name=".act.LoginActivity" />
+        <activity android:name=".act.RegisterActivity"></activity>
     </application>
 
 </manifest>

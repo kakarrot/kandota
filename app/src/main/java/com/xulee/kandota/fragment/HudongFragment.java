@@ -116,16 +116,6 @@ public class HudongFragment extends BaseFragment implements HudongUi {
     }
 
     @Override
-    public void requestSuccess(List<HudongResponse> result) {
-
-    }
-
-    @Override
-    public void requestFinished() {
-
-    }
-
-    @Override
     public void onPause() {
         super.onPause();
         if (null != banner) {

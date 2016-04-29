@@ -32,6 +32,20 @@ public class MyApplication extends Application {
         super.onCreate();
         this.app = this;
 //        initJPush();
+        String processName = AppUtils.getProcessName(this, android.os.Process.myPid());
+        //为避免当有多个线程时，onCreate()方法会被多次执行，如下处理
+        if (processName != null) {
+            boolean defaultProcess = processName.equals(Constants.REAL_PACKAGE_NAME);
+            if (defaultProcess) {
+                initAppForMainProcess();
+            } else if (processName.contains(":webbrowser")) {
+//                initAppForWebBrowseProcess();
+            } else if (processName.contains(":wallet")) {
+            }
+        }
+    }
+
+    protected void initAppForMainProcess() {
         ImageLoaderUtils.init(getApplicationContext());
         ThemeUtils.initTheme(getApplicationContext());
         LoginManager.init(getApplicationContext());
@@ -58,7 +72,7 @@ public class MyApplication extends Application {
         Constants.OEPN_UD_ID = DeviceId.getInstance(this).getDeviceId();
     }
 
-    private void initImeiCode(){
+    private void initImeiCode() {
         Constants.IMEI = AppUtils.getImeiCode(this);
     }
 

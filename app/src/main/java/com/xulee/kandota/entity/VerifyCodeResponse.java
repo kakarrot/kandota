@@ -1,7 +1,7 @@
 package com.xulee.kandota.entity;
 
 import com.xulee.kandota.entity.base.BaseResponse;
-import com.xulee.kandota.utils.des.DES;
+import com.xulee.kandota.utils.DESUtils;
 
 /**
  * 获取验证码返回数据（图片验证码/短信验证码通用）
@@ -34,13 +34,6 @@ public class VerifyCodeResponse extends BaseResponse {
      * @return
      */
     public String getDecryptData(){
-        DES crypt = new DES(DES.key);
-        String result = new String();
-        try {
-            result = crypt.decrypt(data);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return result;
+        return DESUtils.decrypt(data);
     }
 }

@@ -10,7 +10,6 @@ public class BaseResponse implements Parcelable {
     public String status;
     public String message;
 
-
     @Override
     public int describeContents() {
         return 0;

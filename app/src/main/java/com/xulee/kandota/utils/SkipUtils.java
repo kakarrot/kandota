@@ -11,6 +11,7 @@ import com.liuguangqiang.framework.utils.ToastUtils;
 import com.xulee.kandota.R;
 import com.xulee.kandota.act.BrowserActivity;
 import com.xulee.kandota.act.LoginActivity;
+import com.xulee.kandota.act.RegisterActivity;
 import com.xulee.kandota.act.ShakeActivity;
 import com.xulee.kandota.entity.NewsResponse;
 
@@ -47,6 +48,13 @@ public class SkipUtils {
         }
         context.startActivity(new Intent(context, LoginActivity.class));
 //        ((Activity) context).overridePendingTransition(R.anim.push_right_in, R.anim.push_left_out);
+    }
+
+    public static void skipToRegister(Context context){
+        if(null == context){
+            throw new NullPointerException("Context is null, can't start other Activity");
+        }
+        context.startActivity(new Intent(context, RegisterActivity.class));
     }
 
     /*

@@ -8,7 +8,10 @@ import com.xulee.kandota.entity.AdsResponse;
 import com.xulee.kandota.entity.HudongResponse;
 import com.xulee.kandota.entity.LoginResponse;
 import com.xulee.kandota.entity.NewsResponse;
+import com.xulee.kandota.entity.RegisterResponse;
+import com.xulee.kandota.entity.SignResponse;
 import com.xulee.kandota.entity.UserResponse;
+import com.xulee.kandota.entity.base.BaseResponse;
 import com.xulee.kandota.entity.base.HudongTagResponse;
 import com.xulee.kandota.entity.VerifyCodeResponse;
 import com.xulee.kandota.utils.ApiUtils;
@@ -89,7 +92,18 @@ public class AsyncUtils {
     }
 
     /**
-     * 登录
+     * 获取短信验证码（注册）
+     * @param context
+     * @param mobile
+     * @param handler
+     */
+    public static void getRegisterSmsCode(Context context, String mobile, String verifyCode, JsonResponseHandler<VerifyCodeResponse> handler){
+        RequestParams params = getParam(ApiUtils.getRegisterSmsCodeParams(mobile, verifyCode));
+        JHttpClient.post(context, ApiUtils.URL_REGISTER_GET_SMS_CODE, params, handler);
+    }
+
+    /**
+     * 登录（短信验证码登录）
      * @param context
      * @param mobile 手机号
      * @param smsCode 短信验证码
@@ -100,14 +114,29 @@ public class AsyncUtils {
         JHttpClient.post(context, ApiUtils.URL_LOGIN, params, handler);
     }
 
+
+    /**
+     * 登录（用户名密码登录）
+     * @param context
+     * @param username
+     * @param password
+     * @param handler
+     */
+    public static void login2(Context context, String username, String password, JsonResponseHandler<LoginResponse> handler){
+        RequestParams params = getParam(ApiUtils.getLoginOldParams(username, password));
+        JHttpClient.post(context, ApiUtils.URL_LOGIN_OLD, params, handler);
+    }
+
     /**
      * 注册
      * @param context
-     * @param smsCode
+     * @param mobile 手机号
+     * @param smsCode 短信验证码
+     * @param inviteCode 邀请码
      * @param handler
      */
-    public static void register(Context context, String smsCode, JsonResponseHandler<LoginResponse> handler){
-        RequestParams params = getParam(ApiUtils.getRegisterParams(smsCode));
+    public static void register(Context context, String mobile, String smsCode, String inviteCode, JsonResponseHandler<RegisterResponse> handler){
+        RequestParams params = getParam(ApiUtils.getRegisterParams(mobile, smsCode, inviteCode));
         JHttpClient.post(context, ApiUtils.URL_REGISTER, params, handler);
     }
 
@@ -120,6 +149,16 @@ public class AsyncUtils {
     public static void getUser(Context context, String uid, JsonResponseHandler<UserResponse> handler){
         RequestParams params = getParam(ApiUtils.getUserParams(uid));
         JHttpClient.post(context, ApiUtils.URL_GET_USER, params, handler);
+    }
+
+    /**
+     * 签到
+     * @param context
+     * @param handler
+     */
+    public static void sign(Context context, JsonResponseHandler<SignResponse> handler){
+        RequestParams params = getParam(ApiUtils.getSignParmas());
+        JHttpClient.post(context, ApiUtils.URL_SIGN, params, handler);
     }
 
     /**

@@ -2,6 +2,7 @@ package com.xulee.kandota.act;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
 import com.liuguangqiang.framework.utils.ToastUtils;
 import com.xulee.kandota.R;
@@ -15,8 +16,10 @@ import com.xulee.kandota.fragment.LoginPreFragment;
 import com.xulee.kandota.listeners.LoginListener;
 import com.xulee.kandota.listeners.LoginPreListener;
 import com.xulee.kandota.utils.LoginManager;
+import com.xulee.kandota.utils.SkipUtils;
 import com.xulee.kandota.utils.http.JsonResponseHandler;
 
+import butterknife.Bind;
 import butterknife.OnClick;
 
 public class LoginActivity extends BaseActivity implements LoginPreListener, LoginListener {
@@ -45,7 +48,7 @@ public class LoginActivity extends BaseActivity implements LoginPreListener, Log
 
     @OnClick(R.id.tv_register)
     void register(View view) {
-
+        SkipUtils.skipToRegister(this);
     }
 
     @Override
@@ -59,7 +62,7 @@ public class LoginActivity extends BaseActivity implements LoginPreListener, Log
 
     @Override
     public void onLoginSuccess(LoginResponse response) {
-        if(null != response && null != response.data){
+        if (null != response && null != response.data) {
             getUser(response.data.uid);
         }
     }
@@ -69,7 +72,7 @@ public class LoginActivity extends BaseActivity implements LoginPreListener, Log
             @Override
             public void onSuccess(UserResponse result) {
                 super.onSuccess(result);
-                if(result.status.equals("ok")){
+                if (result.status.equals("ok")) {
                     LoginManager.saveUser(LoginActivity.this, result.data);
                     Auth auth = new Auth();
                     auth.uid = String.valueOf(result.data.uid);
@@ -77,7 +80,7 @@ public class LoginActivity extends BaseActivity implements LoginPreListener, Log
                     LoginManager.saveAuth(LoginActivity.this, auth);
                     finish();
                 }
-                if(null != result.message){
+                if (null != result.message) {
                     ToastUtils.show(LoginActivity.this, result.message);
                 }
             }

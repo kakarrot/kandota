@@ -46,7 +46,6 @@ public class LoginPreFragment extends BaseFragment implements LoginPreUi {
     private String mVcode; //图片验证码
     private Bitmap bitmap;
     private boolean hasInit = false;
-    private MyDialog logoutDialog;
 
     @Override
     protected int getContentView() {
@@ -161,12 +160,13 @@ public class LoginPreFragment extends BaseFragment implements LoginPreUi {
 
     @Override
     public void showRegisterDialog() {
-        logoutDialog = new MyDialog(getActivity(), R.string.warn_register);
+        MyDialog logoutDialog = new MyDialog(getActivity(), R.string.warn_register);
         logoutDialog.setMessage(R.string.warn_register_content);
         logoutDialog.setPositiveButton(R.string.str_sure, new OnPositiveClickListener() {
             @Override
             public void onClick() {
-//                SkipUtils.
+                SkipUtils.skipToRegister(getActivity());
+                getActivity().finish();
             }
         });
         logoutDialog.show();

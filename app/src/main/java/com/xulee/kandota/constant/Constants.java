@@ -8,6 +8,9 @@ public class Constants {
     //app 唯一标识符
     public static String CFLAG = "stgltv";
 
+    //App包名
+    public static String REAL_PACKAGE_NAME = "com.xulee.kandota";
+
     public static boolean DEBUG = true;
 
     public static boolean DISABLE_UPDATE = false;
