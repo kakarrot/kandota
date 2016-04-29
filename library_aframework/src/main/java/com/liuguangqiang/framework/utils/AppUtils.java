@@ -14,7 +14,7 @@ import java.util.List;
 
 /**
  * AppUtils
- * <p/>
+ * <p>
  * Created by Eric on 2014-5-19.
  */
 public class AppUtils {
@@ -143,6 +143,20 @@ public class AppUtils {
             Log.e("AppUtils", e.getMessage());
         }
         return info;
+    }
+
+    public static String getProcessName(Context cxt, int pid) {
+        ActivityManager am = (ActivityManager) cxt.getSystemService(Context.ACTIVITY_SERVICE);
+        List<ActivityManager.RunningAppProcessInfo> runningApps = am.getRunningAppProcesses();
+        if (runningApps == null || runningApps.isEmpty()) {
+            return null;
+        }
+        for (ActivityManager.RunningAppProcessInfo procInfo : runningApps) {
+            if (procInfo.pid == pid) {
+                return procInfo.processName;
+            }
+        }
+        return null;
     }
 
 }

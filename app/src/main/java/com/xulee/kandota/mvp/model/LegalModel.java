@@ -1,4 +1,4 @@
-package com.xulee.kandota.module;
+package com.xulee.kandota.mvp.model;
 
 
 import com.xulee.kandota.mvp.ui.LegalUi;
